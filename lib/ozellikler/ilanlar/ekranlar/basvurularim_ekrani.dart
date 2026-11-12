@@ -11,7 +11,9 @@ import '../bloc/ilan_state.dart';
 import '../bilesenler/basvuru_karti.dart';
 
 class BasvurularimEkrani extends StatefulWidget {
-  const BasvurularimEkrani({super.key});
+  final VoidCallback? onIlanaGit;
+
+  const BasvurularimEkrani({super.key, this.onIlanaGit});
 
   @override
   State<BasvurularimEkrani> createState() => _BasvurularimEkraniState();
@@ -97,7 +99,13 @@ class _BasvurularimEkraniState extends State<BasvurularimEkrani> {
                         const SizedBox(height: 16),
                         if (!markaMi)
                           ElevatedButton(
-                            onPressed: () => context.go('/ana_sayfa'),
+                            onPressed: () {
+                              if (widget.onIlanaGit != null) {
+                                widget.onIlanaGit!();
+                              } else {
+                                context.go('/ana_sayfa');
+                              }
+                            },
                             child: const Text('İlanları Keşfet'),
                           ),
                       ],

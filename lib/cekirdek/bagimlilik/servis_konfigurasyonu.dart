@@ -1,7 +1,3 @@
-// Dosya Görevi: Bağımlılık Enjeksiyonu ve Servis İlklendirme Konfigürasyonu (GetIt Service Locator).
-// Bu dosya Firebase Core servislerini ilklendirir, ortama göre (Firebase veya Sahte Mock depolar)
-// Depo (Repository) ve BLoC nesnelerini GetIt ile tekil (Singleton) veya fabrika (Factory) olarak kaydeder.
-
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get_it/get_it.dart';
 import '../../firebase_options.dart';
@@ -20,11 +16,10 @@ import '../../ozellikler/sohbet/depo/sohbet_deposu.dart';
 final bulucu = GetIt.instance;
 
 /// servisleriBaslat(): Uygulama başlangıcında Firebase'i başlatan ve bağımlılıkları kaydeden fonksiyon.
-/// testModu: True verildiğinde Firebase'e bağlanmadan Sahte/Mock depolar kaydedilir.
 Future<void> servisleriBaslat({bool testModu = false}) async {
   bool firebaseBaslatildi = false;
 
-  // Test modunda değilsek varsayılan Firebase platform ayarlarıyla ilklendirme yapılır.
+  // Firebase platform ayarlarıyla ilklendirme yapılır.
   if (!testModu) {
     try {
       if (Firebase.apps.isEmpty) {
@@ -34,7 +29,6 @@ Future<void> servisleriBaslat({bool testModu = false}) async {
       }
       firebaseBaslatildi = true;
     } catch (e) {
-      // Platform veya test ortamında Firebase başlatılamazsa yerel/sahte depolara geri düşer.
       firebaseBaslatildi = false;
     }
   }

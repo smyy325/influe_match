@@ -49,6 +49,9 @@
       border-color: rgba(108, 92, 231, 0.6);
       transform: translateY(-2px);
     }
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    }
   </style>
 </head>
 <body class="p-3 sm:p-6 flex flex-col justify-between items-center select-none">
@@ -69,7 +72,10 @@
 
     <!-- Slayt İndikatörü ve Hızlı Geçiş -->
     <div class="flex items-center space-x-2">
-      <span id="slideIndicator" class="text-xs font-semibold px-2.5 py-1 rounded-full bg-purple-900/40 text-purple-200 border border-purple-500/30">1 / 5</span>
+      <a href="teknoloji_sunumu.html" class="hidden sm:inline-flex items-center space-x-1 px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/40 text-xs font-semibold hover:bg-purple-500/30 transition mr-1">
+        <span>💻 Detaylı Teknoloji Sunumu</span>
+      </a>
+      <span id="slideIndicator" class="text-xs font-semibold px-2.5 py-1 rounded-full bg-purple-900/40 text-purple-200 border border-purple-500/30">1 / 6</span>
       <button onclick="prevSlide()" class="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition" title="Önceki Slayt (Sol Ok)">
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
       </button>
@@ -334,6 +340,63 @@
       </div>
     </section>
 
+    <!-- SLAYT 6: TEKNOLOJİ STACK'İ VE MİMARİ (BLoC, CUBIT, FIREBASE) -->
+    <section class="slide glass-card p-6 sm:p-10 rounded-3xl space-y-6">
+      <div class="border-b border-slate-700/60 pb-4 flex items-center justify-between">
+        <div>
+          <span class="text-xs uppercase tracking-wider font-bold text-purple-400">Bölüm 05</span>
+          <h3 class="text-2xl sm:text-3xl font-extrabold text-white">Teknoloji Stack'i & Mimari</h3>
+          <p class="text-xs sm:text-sm text-slate-400">Projede kullanılan teknolojiler, paketler ve mimari yapısı</p>
+        </div>
+        <a href="teknoloji_sunumu.html" class="px-3 py-1.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white text-xs font-bold transition shadow-md shadow-purple-600/30">
+          Tüm Detayları Gör →
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
+        <!-- BLoC & Cubit -->
+        <div class="p-4 rounded-2xl bg-slate-900/60 border border-purple-500/30 space-y-2">
+          <div class="w-8 h-8 rounded-lg bg-purple-500/20 text-purple-300 flex items-center justify-center font-bold text-sm">🔄</div>
+          <h4 class="font-bold text-sm text-white">BLoC & Cubit</h4>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            <code class="text-purple-300">KimlikBloc</code>, <code class="text-purple-300">IlanBloc</code> ve <code class="text-purple-300">SohbetBloc</code> ile olay-durum reaktivitesi. <code class="text-purple-300">TemaCubit</code> ile tema yönetimi.
+          </p>
+        </div>
+
+        <!-- Firebase Ekosistemi -->
+        <div class="p-4 rounded-2xl bg-slate-900/60 border border-amber-500/30 space-y-2">
+          <div class="w-8 h-8 rounded-lg bg-amber-500/20 text-amber-300 flex items-center justify-center font-bold text-sm">🔥</div>
+          <h4 class="font-bold text-sm text-white">Firebase Bulut Altyapısı</h4>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            <code class="text-amber-300">Firebase Auth</code> ile güvenli oturum, <code class="text-amber-300">Cloud Firestore</code> NoSQL canlı stream ile sohbet ve veri senkronizasyonu.
+          </p>
+        </div>
+
+        <!-- GetIt DI & GoRouter -->
+        <div class="p-4 rounded-2xl bg-slate-900/60 border border-indigo-500/30 space-y-2">
+          <div class="w-8 h-8 rounded-lg bg-indigo-500/20 text-indigo-300 flex items-center justify-center font-bold text-sm">💉</div>
+          <h4 class="font-bold text-sm text-white">GetIt DI & GoRouter</h4>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            <code class="text-indigo-300">get_it</code> Service Locator ile bağımlılık enjeksiyonu; <code class="text-indigo-300">go_router</code> ile bildirimsel ve Guard korumalı yönlendirme.
+          </p>
+        </div>
+
+        <!-- Clean & Feature-First -->
+        <div class="p-4 rounded-2xl bg-slate-900/60 border border-pink-500/30 space-y-2">
+          <div class="w-8 h-8 rounded-lg bg-pink-500/20 text-pink-300 flex items-center justify-center font-bold text-sm">🏗️</div>
+          <h4 class="font-bold text-sm text-white">Clean & Feature-First</h4>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Modüler klasör yapısı (<code class="text-pink-300">ozellikler/</code>). Model, Repository, BLoC ve Presentation katmanlarının katı ayrımı.
+          </p>
+        </div>
+      </div>
+
+      <div class="p-4 rounded-2xl bg-slate-900/40 border border-slate-800 flex items-center justify-between text-xs">
+        <span class="text-slate-300">Yardımcı Kitaplıklar: <code class="text-purple-300">equatable</code>, <code class="text-purple-300">image_picker</code>, <code class="text-purple-300">uuid</code>, <code class="text-purple-300">intl</code></span>
+        <a href="teknoloji_sunumu.html" class="text-purple-400 hover:text-purple-300 font-bold underline">Teknoloji Sunum Sayfasına Git →</a>
+      </div>
+    </section>
+
   </main>
 
   <!-- Alt Bar: Slayt Noktaları ve Klavye Bilgisi -->
@@ -413,4 +476,3 @@
   </script>
 </body>
 </html>
-

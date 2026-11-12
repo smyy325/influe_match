@@ -53,10 +53,24 @@ class _IlanAkisiEkraniState extends State<IlanAkisiEkrani> {
     if (!i.ozelIlanMi) return true;
     if (markaMi) return i.markaId == k?.id || i.markaAdi == k?.adSoyad;
     if (k == null) return false;
+
     final h = i.hedefInfluencer.trim().toLowerCase();
+    if (h.isEmpty) return true;
+
     final ad = k.adSoyad.toString().trim().toLowerCase();
     final em = k.email.toString().trim().toLowerCase();
-    return ad.contains(h) || h.contains(ad) || em.contains(h);
+    final sos = k.sosyalMedyaHesabi.toString().trim().toLowerCase().replaceAll('@', '');
+    final cleanH = h.replaceAll('@', '');
+
+    // Tam ad/soyad eşleşmesi (Boşluksuz ve Türkçe büyük/küçük harf toleranslı)
+    final adSpacesiz = ad.replaceAll(RegExp(r'\s+'), '');
+    final hSpacesiz = h.replaceAll(RegExp(r'\s+'), '');
+
+    return ad == h ||
+        adSpacesiz == hSpacesiz ||
+        em == h ||
+        (sos.isNotEmpty && cleanH.isNotEmpty && sos == cleanH) ||
+        k.id.toString().trim().toLowerCase() == h;
   }
 
   Widget _bosDurum() {

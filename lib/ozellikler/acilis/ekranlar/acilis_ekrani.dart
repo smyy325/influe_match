@@ -1,7 +1,3 @@
-// Dosya Görevi: Uygulamanın animasyonlu açılış (Splash Screen) ekranı.
-// Bu ekran uygulama başlatıldığında markalama logosunu gösterir, animasyonları oynatır
-// ve KimlikBloc durumuna göre kullanıcıyı ana sayfaya ya da tanıtım ekranına yönlendirir.
-
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,7 +6,6 @@ import '../../../cekirdek/sabitler/renkler.dart';
 import '../../kimlik/bloc/kimlik_bloc.dart';
 import '../../kimlik/bloc/kimlik_state.dart';
 
-/// AcilisEkrani: Animasyonlu durumlu (Stateful) açılış ekranı widget'ı.
 class AcilisEkrani extends StatefulWidget {
   const AcilisEkrani({super.key});
 

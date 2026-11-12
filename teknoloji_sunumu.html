@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>InflueMatch - Teknoloji Stack'i & Mimari Sunumu</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <style>
+    :root {
+      --primary: #6C5CE7;
+      --secondary: #FD79A8;
+      --accent: #A29BFE;
+      --success: #00B894;
+      --warning: #FDCB6E;
+      --danger: #FF7675;
+      --bg-dark: #0F111A;
+      --card-dark: #1A1D2E;
+      --card-border: #2E344D;
+    }
+    body {
+      background: linear-gradient(135deg, #0F111A 0%, #16192b 50%, #0F111A 100%);
+      color: #F8F9FE;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+    .slide {
+      display: none;
+      opacity: 0;
+      transform: translateY(12px) scale(0.99);
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .slide.active {
+      display: block;
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+    .gradient-text {
+      background: linear-gradient(135deg, #A29BFE 0%, #6C5CE7 50%, #FD79A8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .glass-card {
+      background: rgba(26, 29, 46, 0.75);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(46, 52, 77, 0.85);
+    }
+    .glass-card-hover:hover {
+      border-color: rgba(108, 92, 231, 0.6);
+      transform: translateY(-2px);
+    }
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    }
+  </style>
+</head>
+<body class="p-3 sm:p-6 flex flex-col justify-between items-center select-none">
+
+  <!-- Üst Bar: Navigasyon ve Başlık -->
+  <header class="w-full max-w-5xl flex items-center justify-between py-3 px-4 glass-card rounded-2xl mb-4">
+    <div class="flex items-center space-x-3">
+      <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-[#6C5CE7] to-[#FD79A8] flex items-center justify-center shadow-lg shadow-purple-500/30">
+        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+        </svg>
+      </div>
+      <div>
+        <h1 class="font-extrabold text-base tracking-tight gradient-text">InflueMatch</h1>
+        <p class="text-xs text-slate-400 font-medium">Teknoloji Stack'i & Mimari Sunumu</p>
+      </div>
+    </div>
+
+    <!-- Slayt İndikatörü ve Hızlı Geçiş -->
+    <div class="flex items-center space-x-2">
+      <span id="slideIndicator" class="text-xs font-semibold px-2.5 py-1 rounded-full bg-purple-900/40 text-purple-200 border border-purple-500/30">1 / 6</span>
+      <button onclick="prevSlide()" class="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition" title="Önceki Slayt (Sol Ok)">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+      </button>
+      <button onclick="nextSlide()" class="p-1.5 rounded-lg bg-purple-600 hover:bg-purple-500 text-white shadow-md shadow-purple-600/30 transition" title="Sonraki Slayt (Sağ Ok)">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Ana Slayt Konteyneri -->
+  <main class="w-full max-w-5xl flex-1 flex flex-col justify-center">
+
+    <!-- SLAYT 1: KAPAK & GİRİŞ -->
+    <section class="slide active glass-card p-6 sm:p-10 rounded-3xl relative overflow-hidden shadow-2xl">
+      <div class="absolute -top-24 -right-24 w-80 h-80 bg-purple-600/20 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute -bottom-24 -left-24 w-80 h-80 bg-pink-500/15 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div class="text-center max-w-3xl mx-auto space-y-6 relative z-10 py-4">
+        <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-300 text-xs font-semibold">
+          <span class="w-2 h-2 rounded-full bg-[#00B894] animate-pulse"></span>
+          <span>Reaktif, Modüler ve Ölçeklenebilir Mobil Mimari</span>
+        </div>
+
+        <h2 class="text-3xl sm:text-5xl font-black tracking-tight leading-tight">
+          InflueMatch <br>
+          <span class="gradient-text">Teknoloji & Mimari Altyapısı</span>
+        </h2>
+
+        <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+          InflueMatch, modern <strong class="text-white">Flutter & Dart</strong> ekosistemi üzerinde inşa edilmiş; <strong class="text-white">BLoC / Cubit</strong> durum yönetimi, <strong class="text-white">Firebase Bulut Çözümleri</strong>, <strong class="text-white">GetIt DI</strong> ve <strong class="text-white">Clean Architecture</strong> ilkelerini harmanlayan yüksek performanslı bir mobil uygulamadır.
+        </p>
+
+        <!-- Öne Çıkan Teknoloji Rozetleri -->
+        <div class="pt-4 flex flex-wrap justify-center gap-2">
+          <span class="px-3 py-1.5 rounded-xl bg-purple-900/40 border border-purple-500/40 text-xs font-semibold text-purple-200">⚡ Flutter & Dart 3</span>
+          <span class="px-3 py-1.5 rounded-xl bg-blue-900/40 border border-blue-500/40 text-xs font-semibold text-blue-200">🔄 BLoC & Cubit</span>
+          <span class="px-3 py-1.5 rounded-xl bg-amber-900/40 border border-amber-500/40 text-xs font-semibold text-amber-200">🔥 Firebase Auth & Firestore</span>
+          <span class="px-3 py-1.5 rounded-xl bg-emerald-900/40 border border-emerald-500/40 text-xs font-semibold text-emerald-200">💉 GetIt (DI)</span>
+          <span class="px-3 py-1.5 rounded-xl bg-indigo-900/40 border border-indigo-500/40 text-xs font-semibold text-indigo-200">🗺️ GoRouter</span>
+          <span class="px-3 py-1.5 rounded-xl bg-pink-900/40 border border-pink-500/40 text-xs font-semibold text-pink-200">🏗️ Clean & Feature-First Architecture</span>
+        </div>
+
+        <div class="pt-4">
+          <button onclick="nextSlide()" class="inline-flex items-center space-x-2 px-6 py-3 rounded-xl bg-gradient-to-r from-[#6C5CE7] to-[#FD79A8] text-white font-semibold text-sm shadow-lg shadow-purple-500/25 hover:opacity-95 transition cursor-pointer">
+            <span>Teknolojik Detayları İncele</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLAYT 2: DURUM YÖNETİMİ (BLoC & CUBIT) -->
+    <section class="slide glass-card p-6 sm:p-10 rounded-3xl space-y-6">
+      <div class="border-b border-slate-700/60 pb-4 flex items-center justify-between">
+        <div>
+          <span class="text-xs uppercase tracking-wider font-bold text-purple-400">Bölüm 01</span>
+          <h3 class="text-2xl sm:text-3xl font-extrabold text-white">Durum Yönetimi (State Management)</h3>
+          <p class="text-xs sm:text-sm text-slate-400">Reaktif, öngörülebilir ve test edilebilir durum mimarisi: BLoC & Cubit</p>
+        </div>
+        <div class="hidden sm:block px-3 py-1.5 rounded-xl bg-purple-500/20 border border-purple-500/40 text-purple-300 text-xs font-bold font-mono">flutter_bloc ^9.1.1</div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <!-- BLoC Kartı -->
+        <div class="p-5 rounded-2xl bg-slate-900/70 border border-purple-500/30 space-y-3">
+          <div class="flex items-center justify-between">
+            <h4 class="font-bold text-lg text-white flex items-center space-x-2">
+              <span class="text-purple-400">🧩</span>
+              <span>BLoC Pattern (Event & State)</span>
+            </h4>
+            <span class="text-[11px] px-2 py-0.5 rounded bg-purple-500/20 text-purple-300 font-mono">Karmaşık Akışlar</span>
+          </div>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            İş mantığı UI katmanından %100 soyutlanmıştır. Kullanıcı etkileşimleri <strong>Event</strong> olarak tetiklenir, BLoC bu olayları işleyerek yeni <strong>State</strong> yayınlar.
+          </p>
+          <div class="space-y-2 pt-1">
+            <div class="p-2.5 rounded-xl bg-slate-800/80 border border-slate-700/80 text-xs">
+              <span class="text-purple-300 font-bold">• KimlikBloc:</span> <span class="text-slate-300">Giriş, Kayıt, Çıkış, Rol Değişimi ve Firebase Auth durumlarının senkronizasyonu.</span>
+            </div>
+            <div class="p-2.5 rounded-xl bg-slate-800/80 border border-slate-700/80 text-xs">
+              <span class="text-purple-300 font-bold">• IlanBloc:</span> <span class="text-slate-300">İlan akışı yükleme, yeni ilan oluşturma, başvuru yapma ve filtreleme yönetimi.</span>
+            </div>
+            <div class="p-2.5 rounded-xl bg-slate-800/80 border border-slate-700/80 text-xs">
+              <span class="text-purple-300 font-bold">• SohbetBloc:</span> <span class="text-slate-300">Canlı mesaj dinleme, mesaj gönderme ve sohbet odası oluşturma akışları.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cubit Kartı -->
+        <div class="p-5 rounded-2xl bg-slate-900/70 border border-pink-500/30 space-y-3">
+          <div class="flex items-center justify-between">
+            <h4 class="font-bold text-lg text-white flex items-center space-x-2">
+              <span class="text-pink-400">⚡</span>
+              <span>Cubit Pattern (Fonksiyon Tabanlı)</span>
+            </h4>
+            <span class="text-[11px] px-2 py-0.5 rounded bg-pink-500/20 text-pink-300 font-mono">Hafif Durumlar</span>
+          </div>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Olay (Event) sınıflandırmasına ihtiyaç duyulmayan, doğrudan fonksiyon çağrıları ile durum güncelleyen ultra hafif yapı.
+          </p>
+          <div class="p-3 rounded-xl bg-slate-800/80 border border-slate-700/80 space-y-2 text-xs">
+            <span class="text-pink-300 font-bold">• TemaCubit:</span>
+            <p class="text-slate-300 leading-relaxed">
+              Uygulama genelinde Açık (Light) ve Koyu (Dark) tema modları arasında anlık geçiş sağlar. State basit bir <code class="text-pink-300">ThemeData</code> nesnesi yayınlar.
+            </p>
+          </div>
+          <div class="p-3 rounded-xl bg-purple-950/40 border border-purple-500/30 space-y-1 text-xs">
+            <span class="text-emerald-400 font-bold">✨ Equatable Entegrasyonu:</span>
+            <p class="text-slate-300">
+              <code class="text-purple-200">equatable ^3.0.0</code> paketi sayesinde nesne karşılaştırmaları hafıza referansı yerine değer bazlı yapılır. Gereksiz UI rebuild'leri önlenir.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLAYT 3: BACKEND & BULUT ALTYAPISI (FIREBASE EKOSİSTEMİ) -->
+    <section class="slide glass-card p-6 sm:p-10 rounded-3xl space-y-6">
+      <div class="border-b border-slate-700/60 pb-4 flex items-center justify-between">
+        <div>
+          <span class="text-xs uppercase tracking-wider font-bold text-amber-400">Bölüm 02</span>
+          <h3 class="text-2xl sm:text-3xl font-extrabold text-white">Backend & Bulut Altyapısı (Firebase)</h3>
+          <p class="text-xs sm:text-sm text-slate-400">Gerçek zamanlı NoSQL veritabanı, güvenli kimlik doğrulama ve veri yönetimi</p>
+        </div>
+        <div class="hidden sm:block px-3 py-1.5 rounded-xl bg-amber-500/20 border border-amber-500/40 text-amber-300 text-xs font-bold font-mono">Firebase SDK v5+</div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <!-- Firebase Auth -->
+        <div class="p-4 rounded-2xl bg-slate-900/70 border border-amber-500/30 space-y-2.5">
+          <div class="w-9 h-9 rounded-xl bg-amber-500/20 text-amber-300 flex items-center justify-center font-bold text-lg">🔑</div>
+          <h4 class="font-bold text-sm text-white">Firebase Authentication</h4>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            E-posta ve şifre tabanlı güvenli kimlik doğrulama. Kullanıcı oturum durumu canlı olarak izlenir ve güvenli jeton yönetimi sağlanır.
+          </p>
+        </div>
+
+        <!-- Cloud Firestore -->
+        <div class="p-4 rounded-2xl bg-slate-900/70 border border-orange-500/30 space-y-2.5">
+          <div class="w-9 h-9 rounded-xl bg-orange-500/20 text-orange-300 flex items-center justify-center font-bold text-lg">🔥</div>
+          <h4 class="font-bold text-sm text-white">Cloud Firestore (NoSQL)</h4>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Doküman ve koleksiyon tabanlı canlı veritabanı. <code class="text-amber-300">snapshots()</code> akışları sayesinde mesajlar ve ilan durumları anında ekranlara yansır.
+          </p>
+        </div>
+
+        <!-- Hata Yönetimi & Sonuç Yapısı -->
+        <div class="p-4 rounded-2xl bg-slate-900/70 border border-emerald-500/30 space-y-2.5">
+          <div class="w-9 h-9 rounded-xl bg-emerald-500/20 text-emerald-300 flex items-center justify-center font-bold text-lg">🛡️</div>
+          <h4 class="font-bold text-sm text-white">Hata Çözücü & Sonuç Yapısı</h4>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            <code class="text-emerald-300">FirebaseHataCozucu</code> ile Türkçe anlaşılır hata mesajları türetilir. <code class="text-emerald-300">Sonuc&lt;T&gt;</code> sınıfı ile Başarılı/Hatalı durumlar güvenle dönülür.
+          </p>
+        </div>
+      </div>
+
+      <!-- Veri Koleksiyonları Şeması -->
+      <div class="p-4 rounded-2xl bg-slate-900/50 border border-slate-800 space-y-3">
+        <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400">Ana Firestore Koleksiyon Yapısı</h4>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center text-xs">
+          <div class="p-2.5 rounded-xl bg-slate-800/80 border border-slate-700">
+            <span class="block font-bold text-amber-300">kullanicilar/</span>
+            <span class="text-[11px] text-slate-400">Profil, Rol, Tercihler</span>
+          </div>
+          <div class="p-2.5 rounded-xl bg-slate-800/80 border border-slate-700">
+            <span class="block font-bold text-amber-300">ilanlar/</span>
+            <span class="text-[11px] text-slate-400">Başlık, Bütçe, Şartlar</span>
+          </div>
+          <div class="p-2.5 rounded-xl bg-slate-800/80 border border-slate-700">
+            <span class="block font-bold text-amber-300">basvurular/</span>
+            <span class="text-[11px] text-slate-400">Pitch Notu, Durum</span>
+          </div>
+          <div class="p-2.5 rounded-xl bg-slate-800/80 border border-slate-700">
+            <span class="block font-bold text-amber-300">sohbetler/</span>
+            <span class="text-[11px] text-slate-400">Canlı Mesajlaşma Odaları</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLAYT 4: BAĞIMLILIK ENJEKSİYONU & YÖNLENDİRME (GETIT & GOROUTER) -->
+    <section class="slide glass-card p-6 sm:p-10 rounded-3xl space-y-6">
+      <div class="border-b border-slate-700/60 pb-4 flex items-center justify-between">
+        <div>
+          <span class="text-xs uppercase tracking-wider font-bold text-indigo-400">Bölüm 03</span>
+          <h3 class="text-2xl sm:text-3xl font-extrabold text-white">DI, Rotalama & Yardımcı Kitaplıklar</h3>
+          <p class="text-xs sm:text-sm text-slate-400">Gevşek bağlılık (Loose Coupling) ve bildirimsel yönlendirme</p>
+        </div>
+        <div class="hidden sm:block px-3 py-1.5 rounded-xl bg-indigo-500/20 border border-indigo-500/40 text-indigo-300 text-xs font-bold font-mono">GetIt & GoRouter</div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <!-- GetIt DI -->
+        <div class="p-5 rounded-2xl bg-slate-900/70 border border-indigo-500/30 space-y-3">
+          <div class="flex items-center justify-between">
+            <h4 class="font-bold text-lg text-white flex items-center space-x-2">
+              <span class="text-indigo-400">💉</span>
+              <span>GetIt (Service Locator)</span>
+            </h4>
+            <span class="text-[11px] px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300 font-mono">get_it ^9.3.0</span>
+          </div>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            <code class="text-indigo-300">servis_konfigurasyonu.dart</code> dosyası altında tüm Repository, BLoC ve Servis nesneleri merkezi olarak enjekte edilir.
+          </p>
+          <ul class="text-xs text-slate-400 space-y-1.5 pt-1">
+            <li class="flex items-center space-x-2"><span class="text-indigo-400">✓</span><span><strong>Singleton Kayıtları:</strong> FirebaseDeposu, AuthServisi gibi tekil servisler</span></li>
+            <li class="flex items-center space-x-2"><span class="text-indigo-400">✓</span><span><strong>Factory Kayıtları:</strong> Ekrana özel türetilen BLoC örnekleri</span></li>
+            <li class="flex items-center space-x-2"><span class="text-indigo-400">✓</span><span>Testlerde kolay Mock nesne enjeksiyonu olanağı</span></li>
+          </ul>
+        </div>
+
+        <!-- GoRouter -->
+        <div class="p-5 rounded-2xl bg-slate-900/70 border border-cyan-500/30 space-y-3">
+          <div class="flex items-center justify-between">
+            <h4 class="font-bold text-lg text-white flex items-center space-x-2">
+              <span class="text-cyan-400">🗺️</span>
+              <span>GoRouter (Declarative Routing)</span>
+            </h4>
+            <span class="text-[11px] px-2 py-0.5 rounded bg-cyan-500/20 text-cyan-300 font-mono">go_router ^18.1.4</span>
+          </div>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Uygulama rotaları <code class="text-cyan-300">uygulama_rotalari.dart</code> ile bildirimsel tanımlanmıştır. Auth durumuna göre otomatik yönlendirme (Guard) yapılır.
+          </p>
+          <ul class="text-xs text-slate-400 space-y-1.5 pt-1">
+            <li class="flex items-center space-x-2"><span class="text-cyan-400">✓</span><span><strong>Auth Guard:</strong> Giriş yapmamış kullanıcıyı Giriş Ekranına yönlendirme</span></li>
+            <li class="flex items-center space-x-2"><span class="text-cyan-400">✓</span><span><strong>Parametreli Rotalar:</strong> İlan detay, profil detay ve sohbet detay URL'leri</span></li>
+            <li class="flex items-center space-x-2"><span class="text-cyan-400">✓</span><span><strong>ShellRoute:</strong> Alt navigasyon çubuğu (BottomNavBar) kalıcılığı</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Diğer Önemli Paketler -->
+      <div class="p-4 rounded-2xl bg-slate-900/50 border border-slate-800 space-y-2">
+        <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400">Destekçi Yardımcı Paketler</h4>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+          <div class="p-2.5 rounded-xl bg-slate-800/80 border border-slate-700 flex items-center space-x-2">
+            <span class="text-base">📸</span>
+            <div>
+              <span class="font-bold text-white block">image_picker ^1.2.4</span>
+              <span class="text-[11px] text-slate-400">Galeriden/Kameradan profil resmi seçimi</span>
+            </div>
+          </div>
+          <div class="p-2.5 rounded-xl bg-slate-800/80 border border-slate-700 flex items-center space-x-2">
+            <span class="text-base">🔑</span>
+            <div>
+              <span class="font-bold text-white block">uuid ^4.6.0</span>
+              <span class="text-[11px] text-slate-400">Benzersiz mesaj ve ilan kimliği üretimi</span>
+            </div>
+          </div>
+          <div class="p-2.5 rounded-xl bg-slate-800/80 border border-slate-700 flex items-center space-x-2">
+            <span class="text-base">📅</span>
+            <div>
+              <span class="font-bold text-white block">intl ^0.20.3</span>
+              <span class="text-[11px] text-slate-400">Tarih, saat ve para birimi biçimlendirme</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLAYT 5: PROJE MİMARİSİ & KATMANLI YAPISI (CLEAN ARCHITECTURE) -->
+    <section class="slide glass-card p-6 sm:p-10 rounded-3xl space-y-6">
+      <div class="border-b border-slate-700/60 pb-4 flex items-center justify-between">
+        <div>
+          <span class="text-xs uppercase tracking-wider font-bold text-pink-400">Bölüm 04</span>
+          <h3 class="text-2xl sm:text-3xl font-extrabold text-white">Proje Mimarisi & Klasör Yapısı</h3>
+          <p class="text-xs sm:text-sm text-slate-400">Modüler Feature-First & Clean Architecture Prensipleri</p>
+        </div>
+        <div class="hidden sm:block px-3 py-1.5 rounded-xl bg-pink-500/20 border border-pink-500/40 text-pink-300 text-xs font-bold font-mono">lib/ Architecture</div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <!-- Klasör Yapısı Görünümü -->
+        <div class="p-4 rounded-2xl bg-slate-900/80 border border-slate-700 font-mono text-xs space-y-1.5 text-slate-300">
+          <div class="text-purple-400 font-bold mb-2">📁 lib/</div>
+          <div class="pl-3 text-indigo-300">├── 📁 cekirdek/ (Core)</div>
+          <div class="pl-6 text-slate-400">├── bagimlilik/ (GetIt DI)</div>
+          <div class="pl-6 text-slate-400">├── hata/ (Hata Çözücü & Sonuc)</div>
+          <div class="pl-6 text-slate-400">├── sabitler/ & tema/ (TemaCubit)</div>
+          <div class="pl-6 text-slate-400">└── yonlendirme/ (GoRouter)</div>
+          <div class="pl-3 text-pink-300 pt-1">├── 📁 ozellikler/ (Features)</div>
+          <div class="pl-6 text-slate-300">├── 📁 kimlik/</div>
+          <div class="pl-6 text-slate-300">├── 📁 ilanlar/</div>
+          <div class="pl-6 text-slate-300">├── 📁 sohbet/</div>
+          <div class="pl-6 text-slate-300">├── 📁 profil/</div>
+          <div class="pl-6 text-slate-300">└── 📁 tanitim/</div>
+          <div class="pl-3 text-emerald-300 pt-1">├── firebase_options.dart</div>
+          <div class="pl-3 text-emerald-300">└── main.dart</div>
+        </div>
+
+        <!-- Katman Sorumlulukları -->
+        <div class="space-y-3">
+          <div class="p-3 rounded-xl bg-slate-900/60 border border-purple-500/30 flex items-start space-x-3">
+            <div class="w-7 h-7 rounded-lg bg-purple-500/20 text-purple-300 flex items-center justify-center font-bold text-xs shrink-0">1</div>
+            <div>
+              <h5 class="text-xs font-bold text-white">Model Katmanı (Data Domain)</h5>
+              <p class="text-[11px] text-slate-300">Veri yapıları (<code class="text-purple-300">KullaniciModeli</code>, <code class="text-purple-300">IlanModeli</code>). JSON/Firestore dönüşüm metotları içerir.</p>
+            </div>
+          </div>
+
+          <div class="p-3 rounded-xl bg-slate-900/60 border border-blue-500/30 flex items-start space-x-3">
+            <div class="w-7 h-7 rounded-lg bg-blue-500/20 text-blue-300 flex items-center justify-center font-bold text-xs shrink-0">2</div>
+            <div>
+              <h5 class="text-xs font-bold text-white">Depo Katmanı (Repository Layer)</h5>
+              <p class="text-[11px] text-slate-300">Firebase Firestore ve Auth servisleriyle haberleşir. Soyut arayüzler ve Firebase uyarlamaları barındırır.</p>
+            </div>
+          </div>
+
+          <div class="p-3 rounded-xl bg-slate-900/60 border border-pink-500/30 flex items-start space-x-3">
+            <div class="w-7 h-7 rounded-lg bg-pink-500/20 text-pink-300 flex items-center justify-center font-bold text-xs shrink-0">3</div>
+            <div>
+              <h5 class="text-xs font-bold text-white">BLoC Katmanı (Business Logic)</h5>
+              <p class="text-[11px] text-slate-300">Event'leri dinler, repository'den aldığı veriyi işleyerek UI için hazır State yayınlar.</p>
+            </div>
+          </div>
+
+          <div class="p-3 rounded-xl bg-slate-900/60 border border-emerald-500/30 flex items-start space-x-3">
+            <div class="w-7 h-7 rounded-lg bg-emerald-500/20 text-emerald-300 flex items-center justify-center font-bold text-xs shrink-0">4</div>
+            <div>
+              <h5 class="text-xs font-bold text-white">Sunum Katmanı (Presentation / UI)</h5>
+              <p class="text-[11px] text-slate-300">Modüler ekranlar (<code class="text-emerald-300">ekranlar/</code>) ve tekrar kullanılabilir Material 3 bileşenleri (<code class="text-emerald-300">bilesenler/</code>).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLAYT 6: MİMARİ KAZANÇLAR VE ÖZET -->
+    <section class="slide glass-card p-6 sm:p-10 rounded-3xl space-y-6">
+      <div class="border-b border-slate-700/60 pb-4">
+        <span class="text-xs uppercase tracking-wider font-bold text-emerald-400">Bölüm 05</span>
+        <h3 class="text-2xl sm:text-3xl font-extrabold text-white">Mimari Kazanımlar & Özet</h3>
+        <p class="text-xs sm:text-sm text-slate-400">InflueMatch teknolojik tercihlerinin sağladığı 4 ana avantaj</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div class="p-4 rounded-2xl bg-slate-900/60 border border-slate-800 flex items-start space-x-3">
+          <div class="text-2xl">⚡</div>
+          <div>
+            <h4 class="font-bold text-sm text-white">Yüksek Performans & Anlık Reaktivite</h4>
+            <p class="text-xs text-slate-300 leading-relaxed mt-1">
+              BLoC ve Firestore Stream entegrasyonu sayesinde veriler arka planda değiştiği anda ekranlar yenilenir; gereksiz re-render'lar engellenir.
+            </p>
+          </div>
+        </div>
+
+        <div class="p-4 rounded-2xl bg-slate-900/60 border border-slate-800 flex items-start space-x-3">
+          <div class="text-2xl">🧱</div>
+          <div>
+            <h4 class="font-bold text-sm text-white">Modülerlik & Kolay Bakım (Maintainability)</h4>
+            <p class="text-xs text-slate-300 leading-relaxed mt-1">
+              Her özellik (<code class="text-purple-300">ozellikler/</code>) kendi içinde bağımsız paketlenmiştir. Yeni bir modül eklemek mevcut kodu bozmaz.
+            </p>
+          </div>
+        </div>
+
+        <div class="p-4 rounded-2xl bg-slate-900/60 border border-slate-800 flex items-start space-x-3">
+          <div class="text-2xl">🧪</div>
+          <div>
+            <h4 class="font-bold text-sm text-white">Kolay Test Edilebilirlik (Testability)</h4>
+            <p class="text-xs text-slate-300 leading-relaxed mt-1">
+              GetIt DI ve soyut Repository katmanı sayesinde hem Unit hem de BLoC testleri sahte (Mock) verilerle kolayca gerçekleştirilebilir.
+            </p>
+          </div>
+        </div>
+
+        <div class="p-4 rounded-2xl bg-slate-900/60 border border-slate-800 flex items-start space-x-3">
+          <div class="text-2xl">🎨</div>
+          <div>
+            <h4 class="font-bold text-sm text-white">Esnek Kullanıcı Deneyimi (UX & Theme)</h4>
+            <p class="text-xs text-slate-300 leading-relaxed mt-1">
+              TemaCubit ile anlık Açık/Koyu tema yönetimi, özelleştirilmiş Material 3 tasarım dili ve Türkçe dinamik hata yönetimi.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="p-5 rounded-2xl bg-gradient-to-r from-purple-950/40 via-slate-900 to-pink-950/30 border border-purple-500/30 text-center space-y-2">
+        <h4 class="text-base font-bold text-white">Teşekkürler! 🎉</h4>
+        <p class="text-xs sm:text-sm text-slate-300">
+          InflueMatch - Modern Flutter, BLoC ve Firebase Teknolojileri ile Geleceğin Influencer Pazar Yeri Altyapısı.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Alt Bar: Slayt Noktaları ve Klavye Bilgisi -->
+  <footer class="w-full max-w-5xl flex items-center justify-between py-3 px-4 glass-card rounded-2xl mt-4 text-xs text-slate-400">
+    <div class="flex items-center space-x-1.5" id="dotsContainer">
+      <!-- JS ile noktalar doldurulacak -->
+    </div>
+    <div class="hidden sm:flex items-center space-x-2 text-[11px] text-slate-400">
+      <span>Klavye:</span>
+      <kbd class="px-1.5 py-0.5 rounded bg-slate-800 border border-slate-700 text-slate-300 font-mono">←</kbd>
+      <kbd class="px-1.5 py-0.5 rounded bg-slate-800 border border-slate-700 text-slate-300 font-mono">→</kbd>
+      <span>ile geçiş yapabilirsiniz</span>
+    </div>
+  </footer>
+
+  <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const totalSlides = slides.length;
+    const indicator = document.getElementById('slideIndicator');
+    const dotsContainer = document.getElementById('dotsContainer');
+
+    function setupDots() {
+      dotsContainer.innerHTML = '';
+      for (let i = 0; i < totalSlides; i++) {
+        const dot = document.createElement('button');
+        dot.className = `w-2.5 h-2.5 rounded-full transition-all duration-300 ${i === currentSlide ? 'bg-purple-500 w-6' : 'bg-slate-700 hover:bg-slate-600'}`;
+        dot.onclick = () => goToSlide(i);
+        dotsContainer.appendChild(dot);
+      }
+    }
+
+    function updateSlides() {
+      slides.forEach((slide, idx) => {
+        if (idx === currentSlide) {
+          slide.classList.add('active');
+        } else {
+          slide.classList.remove('active');
+        }
+      });
+      indicator.textContent = `${currentSlide + 1} / ${totalSlides}`;
+      setupDots();
+    }
+
+    function nextSlide() {
+      if (currentSlide < totalSlides - 1) {
+        currentSlide++;
+      } else {
+        currentSlide = 0;
+      }
+      updateSlides();
+    }
+
+    function prevSlide() {
+      if (currentSlide > 0) {
+        currentSlide--;
+      } else {
+        currentSlide = totalSlides - 1;
+      }
+      updateSlides();
+    }
+
+    function goToSlide(idx) {
+      currentSlide = idx;
+      updateSlides();
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ') {
+        nextSlide();
+      } else if (e.key === 'ArrowLeft') {
+        prevSlide();
+      }
+    });
+
+    setupDots();
+  </script>
+</body>
+</html>

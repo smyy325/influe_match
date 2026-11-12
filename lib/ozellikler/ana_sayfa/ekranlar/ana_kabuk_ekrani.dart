@@ -1,7 +1,3 @@
-// Dosya Görevi: Ana Kabuk Ekranı (Bottom Navigation Shell).
-// Bu ekran uygulamanın alt gezinti çubuğunu (NavigationBar) barındırır,
-// sekmeler arası geçişi yönetir ve IndexedStack ile durumları koruyarak 4 ana ekranı görüntüler.
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../cekirdek/sabitler/renkler.dart';
@@ -30,12 +26,20 @@ class _AnaKabukEkraniState extends State<AnaKabukEkrani> {
   int _seciliSekme = 0;
 
   // Sekmelerde görüntülenecek 4 ana sayfa ekranı.
-  final List<Widget> _ekranlar = const [
-    IlanAkisiEkrani(),
-    BasvurularimEkrani(),
-    SohbetListesiEkrani(),
-    ProfilEkrani(),
-  ];
+  late final List<Widget> _ekranlar;
+
+  @override
+  void initState() {
+    super.initState();
+    _ekranlar = [
+      const IlanAkisiEkrani(),
+      BasvurularimEkrani(
+        onIlanaGit: () => _sekmeDegisti(0),
+      ),
+      const SohbetListesiEkrani(),
+      const ProfilEkrani(),
+    ];
+  }
 
   /// _sekmeDegisti(): Kullanıcı alt çubukta farklı bir sekmeye tıkladığında çalışan olay işleyici (Event Handler).
   /// Sekme değiştiğinde ilgili BLoC olaylarını (Başvuruları yükle, Sohbet odalarını yükle) tetikler.

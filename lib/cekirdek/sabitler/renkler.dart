@@ -1,7 +1,3 @@
-// Dosya Görevi: Uygulama Renk Paleti ve Gradyan Sabitleri (App Color Palette).
-// Bu sınıf uygulama genelinde kullanılan mor, mercan, nane yeşili, kart ve arka plan
-// renk kodlarını ve renk gradyanlarını (LinearGradient) tek noktadan yönetir.
-
 import 'package:flutter/material.dart';
 
 /// UygulamaRenkleri: Tüm renk sabitlerini statik (static const) olarak barındıran sınıf.
