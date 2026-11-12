@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>InflueMatch - Proje Tanıtım Sunumu</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <style>
+    :root {
+      --primary: #6C5CE7;
+      --secondary: #FD79A8;
+      --accent: #A29BFE;
+      --success: #00B894;
+      --warning: #FDCB6E;
+      --danger: #FF7675;
+      --bg-dark: #0F111A;
+      --card-dark: #1A1D2E;
+      --card-border: #2E344D;
+    }
+    body {
+      background: linear-gradient(135deg, #0F111A 0%, #16192b 50%, #0F111A 100%);
+      color: #F8F9FE;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+    .slide {
+      display: none;
+      opacity: 0;
+      transform: translateY(12px) scale(0.99);
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .slide.active {
+      display: block;
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+    .gradient-text {
+      background: linear-gradient(135deg, #A29BFE 0%, #6C5CE7 50%, #FD79A8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .glass-card {
+      background: rgba(26, 29, 46, 0.75);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(46, 52, 77, 0.85);
+    }
+    .glass-card-hover:hover {
+      border-color: rgba(108, 92, 231, 0.6);
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+<body class="p-3 sm:p-6 flex flex-col justify-between items-center select-none">
+
+  <!-- Üst Bar: Navigasyon ve Başlık -->
+  <header class="w-full max-w-5xl flex items-center justify-between py-3 px-4 glass-card rounded-2xl mb-4">
+    <div class="flex items-center space-x-3">
+      <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-[#6C5CE7] to-[#FD79A8] flex items-center justify-center shadow-lg shadow-purple-500/30">
+        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+        </svg>
+      </div>
+      <div>
+        <h1 class="font-extrabold text-base tracking-tight gradient-text">InflueMatch</h1>
+        <p class="text-xs text-slate-400 font-medium">Proje Tanıtım & Vizyon Sunumu</p>
+      </div>
+    </div>
+
+    <!-- Slayt İndikatörü ve Hızlı Geçiş -->
+    <div class="flex items-center space-x-2">
+      <span id="slideIndicator" class="text-xs font-semibold px-2.5 py-1 rounded-full bg-purple-900/40 text-purple-200 border border-purple-500/30">1 / 5</span>
+      <button onclick="prevSlide()" class="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition" title="Önceki Slayt (Sol Ok)">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+      </button>
+      <button onclick="nextSlide()" class="p-1.5 rounded-lg bg-purple-600 hover:bg-purple-500 text-white shadow-md shadow-purple-600/30 transition" title="Sonraki Slayt (Sağ Ok)">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Ana Slayt Konteyneri -->
+  <main class="w-full max-w-5xl flex-1 flex flex-col justify-center">
+
+    <!-- SLAYT 1: KAPAK & GİRİŞ -->
+    <section class="slide active glass-card p-6 sm:p-10 rounded-3xl relative overflow-hidden shadow-2xl">
+      <div class="absolute -top-24 -right-24 w-80 h-80 bg-purple-600/20 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute -bottom-24 -left-24 w-80 h-80 bg-pink-500/15 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div class="text-center max-w-3xl mx-auto space-y-6 relative z-10 py-4">
+        <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-300 text-xs font-semibold">
+          <span class="w-2 h-2 rounded-full bg-[#00B894] animate-pulse"></span>
+          <span>Next-Gen Influencer Marketing & İş Birliği Ekosistemi</span>
+        </div>
+
+        <h2 class="text-3xl sm:text-5xl font-black tracking-tight leading-tight">
+          Markalar ile İçerik Üreticilerini <br>
+          <span class="gradient-text">Akıllıca Buluşturan Güç</span>
+        </h2>
+
+        <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+          <strong class="text-white">InflueMatch</strong>, markaların doğru hedef kitleye ulaşan influencer'larla zahmetsizce eşleşmesini, içerik üreticilerinin ise hayallerindeki iş birliklerine şeffaf ve anlık biçimde erişmesini sağlayan mobil pazar yeri platformudur.
+        </p>
+
+        <!-- Öne Çıkan Özellik Hapları -->
+        <div class="pt-4 flex flex-wrap justify-center gap-2">
+          <span class="px-3 py-1.5 rounded-xl bg-slate-800/80 border border-slate-700 text-xs font-medium text-slate-200">📱 Flutter & BLoC</span>
+          <span class="px-3 py-1.5 rounded-xl bg-slate-800/80 border border-slate-700 text-xs font-medium text-slate-200">⚡ Firebase Cloud Firestore</span>
+          <span class="px-3 py-1.5 rounded-xl bg-slate-800/80 border border-slate-700 text-xs font-medium text-slate-200">🔄 Çift Rol (Marka / Influencer)</span>
+          <span class="px-3 py-1.5 rounded-xl bg-slate-800/80 border border-slate-700 text-xs font-medium text-slate-200">💬 Anlık Canlı Mesajlaşma</span>
+          <span class="px-3 py-1.5 rounded-xl bg-slate-800/80 border border-slate-700 text-xs font-medium text-slate-200">🌗 Dinamik Açık / Koyu Tema</span>
+        </div>
+
+        <div class="pt-4">
+          <button onclick="nextSlide()" class="inline-flex items-center space-x-2 px-6 py-3 rounded-xl bg-gradient-to-r from-[#6C5CE7] to-[#FD79A8] text-white font-semibold text-sm shadow-lg shadow-purple-500/25 hover:opacity-95 transition cursor-pointer">
+            <span>Sunuma Başla</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLAYT 2: PROJE NEDİR? -->
+    <section class="slide glass-card p-6 sm:p-10 rounded-3xl space-y-6">
+      <div class="border-b border-slate-700/60 pb-4">
+        <span class="text-xs uppercase tracking-wider font-bold text-purple-400">Bölüm 01</span>
+        <h3 class="text-2xl sm:text-3xl font-extrabold text-white">InflueMatch Nedir?</h3>
+        <p class="text-xs sm:text-sm text-slate-400">Projenin kimliği, vizyonu ve iki taraflı ekosistem modeli</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div class="p-5 rounded-2xl bg-slate-900/60 border border-purple-500/20 space-y-3">
+          <div class="w-10 h-10 rounded-xl bg-purple-500/20 text-purple-300 flex items-center justify-center font-bold text-lg">
+            🏢
+          </div>
+          <h4 class="font-bold text-lg text-white">Markalar İçin</h4>
+          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+            Pahalı ajanslara veya aracı komisyonculara gerek kalmadan; kampanya bütçesi, hedef kitle kriteri ve platform kuralları belirleyerek saniyeler içinde <strong>kampanya ilanı</strong> açabilir. Gelen başvuruları influencer portfolyosu ile inceleyip tek tuşla kabul/red kararı verir.
+          </p>
+          <ul class="text-xs text-slate-400 space-y-1.5 pt-2">
+            <li class="flex items-center space-x-2"><span class="text-emerald-400">✓</span><span>Hedefe yönelik ilan açma ve bütçe türü belirleme</span></li>
+            <li class="flex items-center space-x-2"><span class="text-emerald-400">✓</span><span>Gelen başvurularda pitch notu ve profil önizleme</span></li>
+            <li class="flex items-center space-x-2"><span class="text-emerald-400">✓</span><span>Başvuran adayı ile anında ilana özel canlı sohbet</span></li>
+          </ul>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-slate-900/60 border border-pink-500/20 space-y-3">
+          <div class="w-10 h-10 rounded-xl bg-pink-500/20 text-pink-300 flex items-center justify-center font-bold text-lg">
+            ✨
+          </div>
+          <h4 class="font-bold text-lg text-white">İçerik Üreticileri (Influencer) İçin</h4>
+          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+            Kendi ilgi alanlarına (Güzellik, Spor, Teknoloji, Seyahat vb.) uygun açık ilanları keşfeder. Kendisini ve içerik fikrini tanıtan <strong>Pitch Notu</strong> ile doğrudan başvuru yapar ve değerlendirme sürecini şeffaf rozetlerle canlı izler.
+          </p>
+          <ul class="text-xs text-slate-400 space-y-1.5 pt-2">
+            <li class="flex items-center space-x-2"><span class="text-pink-400">✓</span><span>Tematik kategoriler arasından ilgi alanı seçebilme</span></li>
+            <li class="flex items-center space-x-2"><span class="text-pink-400">✓</span><span>Şeffaf süreç takibi: Değerlendiriliyor, Kabul, Ret</span></li>
+            <li class="flex items-center space-x-2"><span class="text-pink-400">✓</span><span>Markanın profiline tıklayarak güvenilirliğini teyit etme</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="p-4 rounded-xl bg-gradient-to-r from-purple-950/40 to-slate-900 border border-purple-500/30 flex items-center space-x-3">
+        <span class="text-2xl">💡</span>
+        <p class="text-xs sm:text-sm text-slate-200">
+          <strong>Önemli Fark:</strong> InflueMatch kapalı bir sistem değildir; kullanıcı dilediği an profilinden Marka veya Influencer rolü arasında geçiş yapabilir, pazarın iki yüzünü de deneyimleyebilir.
+        </p>
+      </div>
+    </section>
+
+    <!-- SLAYT 3: PROJENİN AMACI -->
+    <section class="slide glass-card p-6 sm:p-10 rounded-3xl space-y-6">
+      <div class="border-b border-slate-700/60 pb-4">
+        <span class="text-xs uppercase tracking-wider font-bold text-purple-400">Bölüm 02</span>
+        <h3 class="text-2xl sm:text-3xl font-extrabold text-white">Projenin Temel Amacı</h3>
+        <p class="text-xs sm:text-sm text-slate-400">Geliştirilme motivasyonu ve ulaşılmak istenen vizyon</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div class="p-4 rounded-2xl bg-slate-900/60 border border-slate-700 space-y-2">
+          <div class="w-8 h-8 rounded-lg bg-indigo-500/20 text-indigo-300 flex items-center justify-center font-bold">1</div>
+          <h4 class="font-bold text-sm text-white">Aracıları Ortadan Kaldırmak</h4>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Mikro ve makro influencer'lar ile KOBİ ve büyük markalar arasındaki gereksiz komisyoncu zincirini kırarak doğrudan teması sağlamak.
+          </p>
+        </div>
+
+        <div class="p-4 rounded-2xl bg-slate-900/60 border border-slate-700 space-y-2">
+          <div class="w-8 h-8 rounded-lg bg-pink-500/20 text-pink-300 flex items-center justify-center font-bold">2</div>
+          <h4 class="font-bold text-sm text-white">Süreçleri Şeffaflaştırmak</h4>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Başvuru durumunun (Değerlendiriliyor, Kabul, Red) anlık rozetlerle senkronize görünmesi ve belirsiz bekleyişlerin sona ermesi.
+          </p>
+        </div>
+
+        <div class="p-4 rounded-2xl bg-slate-900/60 border border-slate-700 space-y-2">
+          <div class="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-300 flex items-center justify-center font-bold">3</div>
+          <h4 class="font-bold text-sm text-white">Niş & Doğru Eşleşme</h4>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Tematik ana kategoriler ve doğrudan kişiye özel sarı kartlı hedefleme sayesinde, doğru ürünün doğrudan ilgili yetenekle buluşmasını sağlamak.
+          </p>
+        </div>
+      </div>
+
+      <div class="p-5 rounded-2xl bg-slate-900/40 border border-slate-800 space-y-3">
+        <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400">Stratejik Vizyon</h4>
+        <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+          Türkiye ve global pazarda içerik üreticiliği ekonomisi (Creator Economy) hızla büyümektedir. InflueMatch, bu ekonomideki parçalanmış ve güven problemi yaşayan ilişkileri tek bir standart altında toplayan <strong>modern, ölçeklenebilir ve güvenli mobil altyapı</strong> olmayı hedefler.
+        </p>
+      </div>
+    </section>
+
+    <!-- SLAYT 4: HANGİ İHTİYACA HİZMET EDİYOR? (PROBLEM - ÇÖZÜM) -->
+    <section class="slide glass-card p-6 sm:p-10 rounded-3xl space-y-6">
+      <div class="border-b border-slate-700/60 pb-4">
+        <span class="text-xs uppercase tracking-wider font-bold text-purple-400">Bölüm 03</span>
+        <h3 class="text-2xl sm:text-3xl font-extrabold text-white">Hangi İhtiyaca Hizmet Ediyor?</h3>
+        <p class="text-xs sm:text-sm text-slate-400">Sektörün kanayan yaraları ve InflueMatch'in getirdiği kesin çözümler</p>
+      </div>
+
+      <div class="space-y-3">
+        <!-- Karşılaştırma 1 -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 p-3.5 rounded-2xl bg-slate-900/50 border border-slate-800">
+          <div class="flex items-start space-x-2.5">
+            <span class="text-red-400 font-bold text-base mt-0.5">✕</span>
+            <div>
+              <p class="text-xs font-bold text-red-300">Geleneksel Problem: DM & E-posta Kaosu</p>
+              <p class="text-xs text-slate-400">Influencer'ların gelen kutuları binlerce spam veya kaybolan e-posta ile doludur; teklifler kaçar.</p>
+            </div>
+          </div>
+          <div class="flex items-start space-x-2.5 sm:border-l sm:border-slate-800 sm:pl-3">
+            <span class="text-emerald-400 font-bold text-base mt-0.5">✓</span>
+            <div>
+              <p class="text-xs font-bold text-emerald-300">InflueMatch Çözümü: Yapılandırılmış İlan Akışı</p>
+              <p class="text-xs text-slate-300">Tüm kampanyalar tek bir akışta listelenir, başvuru ve teklifler derli toplu panelde tutulur.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Karşılaştırma 2 -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 p-3.5 rounded-2xl bg-slate-900/50 border border-slate-800">
+          <div class="flex items-start space-x-2.5">
+            <span class="text-red-400 font-bold text-base mt-0.5">✕</span>
+            <div>
+              <p class="text-xs font-bold text-red-300">Geleneksel Problem: Yüksek Ajans Masrafları</p>
+              <p class="text-xs text-slate-400">Özellikle küçük ve orta ölçekli markalar bütçelerinin %30-50'sini aracı ajans komisyonlarına kaptırır.</p>
+            </div>
+          </div>
+          <div class="flex items-start space-x-2.5 sm:border-l sm:border-slate-800 sm:pl-3">
+            <span class="text-emerald-400 font-bold text-base mt-0.5">✓</span>
+            <div>
+              <p class="text-xs font-bold text-emerald-300">InflueMatch Çözümü: Aracısız Doğrudan İş Birliği</p>
+              <p class="text-xs text-slate-300">Marka ve içerik üretici doğrudan iletişim kurar; bütçe doğrudan projeye ve içeriğe yansır.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Karşılaştırma 3 -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 p-3.5 rounded-2xl bg-slate-900/50 border border-slate-800">
+          <div class="flex items-start space-x-2.5">
+            <span class="text-red-400 font-bold text-base mt-0.5">✕</span>
+            <div>
+              <p class="text-xs font-bold text-red-300">Geleneksel Problem: Güven ve Karar Belirsizliği</p>
+              <p class="text-xs text-slate-400">Başvuru yapan influencer haftalarca cevap alamaz, marka ise adayın yetkinliğini doğrulayamaz.</p>
+            </div>
+          </div>
+          <div class="flex items-start space-x-2.5 sm:border-l sm:border-slate-800 sm:pl-3">
+            <span class="text-emerald-400 font-bold text-base mt-0.5">✓</span>
+            <div>
+              <p class="text-xs font-bold text-emerald-300">InflueMatch Çözümü: Canlı Durum Rozetleri & Profil İnceleme</p>
+              <p class="text-xs text-slate-300">İki taraf da profilleri ve portfolyoyu tıklar, karar durumu eş zamanlı olarak rozetle ekrana yansır.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLAYT 5: SAĞLADIĞI KOLAYLIKLAR & ÖNE ÇIKAN ÖZELLİKLER -->
+    <section class="slide glass-card p-6 sm:p-10 rounded-3xl space-y-6">
+      <div class="border-b border-slate-700/60 pb-4">
+        <span class="text-xs uppercase tracking-wider font-bold text-purple-400">Bölüm 04</span>
+        <h3 class="text-2xl sm:text-3xl font-extrabold text-white">Sağladığı Kolaylıklar</h3>
+        <p class="text-xs sm:text-sm text-slate-400">Kullanıcı deneyimini benzersiz kılan 6 temel kolaylık</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5">
+        <div class="p-3.5 rounded-xl bg-slate-900/60 border border-slate-800 glass-card-hover transition">
+          <div class="text-xl mb-1.5">🎯</div>
+          <h5 class="text-xs font-bold text-white mb-1">Kategori & Özel Hedefli Sarı İlanlar</h5>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            İlgi alanı eşleşmesinin yanı sıra marka belirli bir influencer'a özel ilan açtığında ilan sarı renkte ve sadece o kişiye özel görünür.
+          </p>
+        </div>
+
+        <div class="p-3.5 rounded-xl bg-slate-900/60 border border-slate-800 glass-card-hover transition">
+          <div class="text-xl mb-1.5">📝</div>
+          <h5 class="text-xs font-bold text-white mb-1">Pitch Notlu Başvuru</h5>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            İçerik fikri, portfolyo veya özel not tek bir modal pencereden gönderilir, marka tarafında şık kartta listelenir.
+          </p>
+        </div>
+
+        <div class="p-3.5 rounded-xl bg-slate-900/60 border border-slate-800 glass-card-hover transition">
+          <div class="text-xl mb-1.5">💬</div>
+          <h5 class="text-xs font-bold text-white mb-1">İlana Özel Canlı Sohbet</h5>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            Firestore destekli gerçek zamanlı mesajlaşma; her sohbet hangi ilana ait olduğunu başlıkta gösterir.
+          </p>
+        </div>
+
+        <div class="p-3.5 rounded-xl bg-slate-900/60 border border-slate-800 glass-card-hover transition">
+          <div class="text-xl mb-1.5">👁️</div>
+          <h5 class="text-xs font-bold text-white mb-1">Karşılıklı Profil Görüntüleme</h5>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            Marka başvuran influencer'ın biyografisini ve tercihlerini, influencer ise markanın kurumsal bilgilerini tek tıkla inceler.
+          </p>
+        </div>
+
+        <div class="p-3.5 rounded-xl bg-slate-900/60 border border-slate-800 glass-card-hover transition">
+          <div class="text-xl mb-1.5">📸</div>
+          <h5 class="text-xs font-bold text-white mb-1">Galeriden Fotoğraf & Avatar</h5>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            Base64 & URL akıllı dönüştürücü sayesinde cihaz galerisinden doğrudan profil fotoğrafı yükleme ve anlık senkronizasyon.
+          </p>
+        </div>
+
+        <div class="p-3.5 rounded-xl bg-slate-900/60 border border-slate-800 glass-card-hover transition">
+          <div class="text-xl mb-1.5">🌗</div>
+          <h5 class="text-xs font-bold text-white mb-1">Açık / Koyu Tema Seçeneği</h5>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            Yalnızca Profil ekranında sunulan tek dokunuşluk geçişle ister göz dostu koyu tema, ister ferah açık tema deneyimi.
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Alt Bar: Slayt Noktaları ve Klavye Bilgisi -->
+  <footer class="w-full max-w-5xl flex items-center justify-between py-3 px-4 glass-card rounded-2xl mt-4 text-xs text-slate-400">
+    <div class="flex items-center space-x-1.5" id="dotsContainer">
+      <!-- JS ile noktalar doldurulacak -->
+    </div>
+    <div class="hidden sm:flex items-center space-x-2 text-[11px] text-slate-400">
+      <span>Klavye:</span>
+      <kbd class="px-1.5 py-0.5 rounded bg-slate-800 border border-slate-700 text-slate-300 font-mono">←</kbd>
+      <kbd class="px-1.5 py-0.5 rounded bg-slate-800 border border-slate-700 text-slate-300 font-mono">→</kbd>
+      <span>ile geçiş yapabilirsiniz</span>
+    </div>
+  </footer>
+
+  <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const totalSlides = slides.length;
+    const indicator = document.getElementById('slideIndicator');
+    const dotsContainer = document.getElementById('dotsContainer');
+
+    function setupDots() {
+      dotsContainer.innerHTML = '';
+      for (let i = 0; i < totalSlides; i++) {
+        const dot = document.createElement('button');
+        dot.className = `w-2.5 h-2.5 rounded-full transition-all duration-300 ${i === currentSlide ? 'bg-purple-500 w-6' : 'bg-slate-700 hover:bg-slate-600'}`;
+        dot.onclick = () => goToSlide(i);
+        dotsContainer.appendChild(dot);
+      }
+    }
+
+    function updateSlides() {
+      slides.forEach((slide, idx) => {
+        if (idx === currentSlide) {
+          slide.classList.add('active');
+        } else {
+          slide.classList.remove('active');
+        }
+      });
+      indicator.textContent = `${currentSlide + 1} / ${totalSlides}`;
+      setupDots();
+    }
+
+    function nextSlide() {
+      if (currentSlide < totalSlides - 1) {
+        currentSlide++;
+      } else {
+        currentSlide = 0;
+      }
+      updateSlides();
+    }
+
+    function prevSlide() {
+      if (currentSlide > 0) {
+        currentSlide--;
+      } else {
+        currentSlide = totalSlides - 1;
+      }
+      updateSlides();
+    }
+
+    function goToSlide(idx) {
+      currentSlide = idx;
+      updateSlides();
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ') {
+        nextSlide();
+      } else if (e.key === 'ArrowLeft') {
+        prevSlide();
+      }
+    });
+
+    setupDots();
+  </script>
+</body>
+</html>
+

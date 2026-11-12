@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "728669846029",
+    "project_id": "influematch",
+    "storage_bucket": "influematch.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:728669846029:android:dd5b8ad3eee8f563d3b344",
+        "android_client_info": {
+          "package_name": "com.example.influematch"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDfSEIlvOwUIM0148vw_iDMrIy_bHrdykc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
