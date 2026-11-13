@@ -1,478 +1,613 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>InflueMatch - Proje Tanıtım Sunumu</title>
-  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
-  <style>
-    :root {
-      --primary: #6C5CE7;
-      --secondary: #FD79A8;
-      --accent: #A29BFE;
-      --success: #00B894;
-      --warning: #FDCB6E;
-      --danger: #FF7675;
-      --bg-dark: #0F111A;
-      --card-dark: #1A1D2E;
-      --card-border: #2E344D;
-    }
-    body {
-      background: linear-gradient(135deg, #0F111A 0%, #16192b 50%, #0F111A 100%);
-      color: #F8F9FE;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      overflow-x: hidden;
-      min-height: 100vh;
-    }
-    .slide {
-      display: none;
-      opacity: 0;
-      transform: translateY(12px) scale(0.99);
-      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .slide.active {
-      display: block;
-      opacity: 1;
-      transform: translateY(0) scale(1);
-    }
-    .gradient-text {
-      background: linear-gradient(135deg, #A29BFE 0%, #6C5CE7 50%, #FD79A8 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .glass-card {
-      background: rgba(26, 29, 46, 0.75);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(46, 52, 77, 0.85);
-    }
-    .glass-card-hover:hover {
-      border-color: rgba(108, 92, 231, 0.6);
-      transform: translateY(-2px);
-    }
-    code {
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-    }
-  </style>
-</head>
-<body class="p-3 sm:p-6 flex flex-col justify-between items-center select-none">
-
-  <!-- Üst Bar: Navigasyon ve Başlık -->
-  <header class="w-full max-w-5xl flex items-center justify-between py-3 px-4 glass-card rounded-2xl mb-4">
-    <div class="flex items-center space-x-3">
-      <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-[#6C5CE7] to-[#FD79A8] flex items-center justify-center shadow-lg shadow-purple-500/30">
-        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-        </svg>
-      </div>
-      <div>
-        <h1 class="font-extrabold text-base tracking-tight gradient-text">InflueMatch</h1>
-        <p class="text-xs text-slate-400 font-medium">Proje Tanıtım & Vizyon Sunumu</p>
-      </div>
-    </div>
-
-    <!-- Slayt İndikatörü ve Hızlı Geçiş -->
-    <div class="flex items-center space-x-2">
-      <a href="teknoloji_sunumu.html" class="hidden sm:inline-flex items-center space-x-1 px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/40 text-xs font-semibold hover:bg-purple-500/30 transition mr-1">
-        <span>💻 Detaylı Teknoloji Sunumu</span>
-      </a>
-      <span id="slideIndicator" class="text-xs font-semibold px-2.5 py-1 rounded-full bg-purple-900/40 text-purple-200 border border-purple-500/30">1 / 6</span>
-      <button onclick="prevSlide()" class="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition" title="Önceki Slayt (Sol Ok)">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
-      </button>
-      <button onclick="nextSlide()" class="p-1.5 rounded-lg bg-purple-600 hover:bg-purple-500 text-white shadow-md shadow-purple-600/30 transition" title="Sonraki Slayt (Sağ Ok)">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
-      </button>
-    </div>
-  </header>
-
-  <!-- Ana Slayt Konteyneri -->
-  <main class="w-full max-w-5xl flex-1 flex flex-col justify-center">
-
-    <!-- SLAYT 1: KAPAK & GİRİŞ -->
-    <section class="slide active glass-card p-6 sm:p-10 rounded-3xl relative overflow-hidden shadow-2xl">
-      <div class="absolute -top-24 -right-24 w-80 h-80 bg-purple-600/20 rounded-full blur-3xl pointer-events-none"></div>
-      <div class="absolute -bottom-24 -left-24 w-80 h-80 bg-pink-500/15 rounded-full blur-3xl pointer-events-none"></div>
-
-      <div class="text-center max-w-3xl mx-auto space-y-6 relative z-10 py-4">
-        <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-300 text-xs font-semibold">
-          <span class="w-2 h-2 rounded-full bg-[#00B894] animate-pulse"></span>
-          <span>Next-Gen Influencer Marketing & İş Birliği Ekosistemi</span>
-        </div>
-
-        <h2 class="text-3xl sm:text-5xl font-black tracking-tight leading-tight">
-          Markalar ile İçerik Üreticilerini <br>
-          <span class="gradient-text">Akıllıca Buluşturan Güç</span>
-        </h2>
-
-        <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
-          <strong class="text-white">InflueMatch</strong>, markaların doğru hedef kitleye ulaşan influencer'larla zahmetsizce eşleşmesini, içerik üreticilerinin ise hayallerindeki iş birliklerine şeffaf ve anlık biçimde erişmesini sağlayan mobil pazar yeri platformudur.
-        </p>
-
-        <!-- Öne Çıkan Özellik Hapları -->
-        <div class="pt-4 flex flex-wrap justify-center gap-2">
-          <span class="px-3 py-1.5 rounded-xl bg-slate-800/80 border border-slate-700 text-xs font-medium text-slate-200">📱 Flutter & BLoC</span>
-          <span class="px-3 py-1.5 rounded-xl bg-slate-800/80 border border-slate-700 text-xs font-medium text-slate-200">⚡ Firebase Cloud Firestore</span>
-          <span class="px-3 py-1.5 rounded-xl bg-slate-800/80 border border-slate-700 text-xs font-medium text-slate-200">🔄 Çift Rol (Marka / Influencer)</span>
-          <span class="px-3 py-1.5 rounded-xl bg-slate-800/80 border border-slate-700 text-xs font-medium text-slate-200">💬 Anlık Canlı Mesajlaşma</span>
-          <span class="px-3 py-1.5 rounded-xl bg-slate-800/80 border border-slate-700 text-xs font-medium text-slate-200">🌗 Dinamik Açık / Koyu Tema</span>
-        </div>
-
-        <div class="pt-4">
-          <button onclick="nextSlide()" class="inline-flex items-center space-x-2 px-6 py-3 rounded-xl bg-gradient-to-r from-[#6C5CE7] to-[#FD79A8] text-white font-semibold text-sm shadow-lg shadow-purple-500/25 hover:opacity-95 transition cursor-pointer">
-            <span>Sunuma Başla</span>
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
-          </button>
-        </div>
-      </div>
-    </section>
-
-    <!-- SLAYT 2: PROJE NEDİR? -->
-    <section class="slide glass-card p-6 sm:p-10 rounded-3xl space-y-6">
-      <div class="border-b border-slate-700/60 pb-4">
-        <span class="text-xs uppercase tracking-wider font-bold text-purple-400">Bölüm 01</span>
-        <h3 class="text-2xl sm:text-3xl font-extrabold text-white">InflueMatch Nedir?</h3>
-        <p class="text-xs sm:text-sm text-slate-400">Projenin kimliği, vizyonu ve iki taraflı ekosistem modeli</p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-        <div class="p-5 rounded-2xl bg-slate-900/60 border border-purple-500/20 space-y-3">
-          <div class="w-10 h-10 rounded-xl bg-purple-500/20 text-purple-300 flex items-center justify-center font-bold text-lg">
-            🏢
-          </div>
-          <h4 class="font-bold text-lg text-white">Markalar İçin</h4>
-          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
-            Pahalı ajanslara veya aracı komisyonculara gerek kalmadan; kampanya bütçesi, hedef kitle kriteri ve platform kuralları belirleyerek saniyeler içinde <strong>kampanya ilanı</strong> açabilir. Gelen başvuruları influencer portfolyosu ile inceleyip tek tuşla kabul/red kararı verir.
-          </p>
-          <ul class="text-xs text-slate-400 space-y-1.5 pt-2">
-            <li class="flex items-center space-x-2"><span class="text-emerald-400">✓</span><span>Hedefe yönelik ilan açma ve bütçe türü belirleme</span></li>
-            <li class="flex items-center space-x-2"><span class="text-emerald-400">✓</span><span>Gelen başvurularda pitch notu ve profil önizleme</span></li>
-            <li class="flex items-center space-x-2"><span class="text-emerald-400">✓</span><span>Başvuran adayı ile anında ilana özel canlı sohbet</span></li>
-          </ul>
-        </div>
-
-        <div class="p-5 rounded-2xl bg-slate-900/60 border border-pink-500/20 space-y-3">
-          <div class="w-10 h-10 rounded-xl bg-pink-500/20 text-pink-300 flex items-center justify-center font-bold text-lg">
-            ✨
-          </div>
-          <h4 class="font-bold text-lg text-white">İçerik Üreticileri (Influencer) İçin</h4>
-          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
-            Kendi ilgi alanlarına (Güzellik, Spor, Teknoloji, Seyahat vb.) uygun açık ilanları keşfeder. Kendisini ve içerik fikrini tanıtan <strong>Pitch Notu</strong> ile doğrudan başvuru yapar ve değerlendirme sürecini şeffaf rozetlerle canlı izler.
-          </p>
-          <ul class="text-xs text-slate-400 space-y-1.5 pt-2">
-            <li class="flex items-center space-x-2"><span class="text-pink-400">✓</span><span>Tematik kategoriler arasından ilgi alanı seçebilme</span></li>
-            <li class="flex items-center space-x-2"><span class="text-pink-400">✓</span><span>Şeffaf süreç takibi: Değerlendiriliyor, Kabul, Ret</span></li>
-            <li class="flex items-center space-x-2"><span class="text-pink-400">✓</span><span>Markanın profiline tıklayarak güvenilirliğini teyit etme</span></li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="p-4 rounded-xl bg-gradient-to-r from-purple-950/40 to-slate-900 border border-purple-500/30 flex items-center space-x-3">
-        <span class="text-2xl">💡</span>
-        <p class="text-xs sm:text-sm text-slate-200">
-          <strong>Önemli Fark:</strong> InflueMatch kapalı bir sistem değildir; kullanıcı dilediği an profilinden Marka veya Influencer rolü arasında geçiş yapabilir, pazarın iki yüzünü de deneyimleyebilir.
-        </p>
-      </div>
-    </section>
-
-    <!-- SLAYT 3: PROJENİN AMACI -->
-    <section class="slide glass-card p-6 sm:p-10 rounded-3xl space-y-6">
-      <div class="border-b border-slate-700/60 pb-4">
-        <span class="text-xs uppercase tracking-wider font-bold text-purple-400">Bölüm 02</span>
-        <h3 class="text-2xl sm:text-3xl font-extrabold text-white">Projenin Temel Amacı</h3>
-        <p class="text-xs sm:text-sm text-slate-400">Geliştirilme motivasyonu ve ulaşılmak istenen vizyon</p>
-      </div>
-
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <div class="p-4 rounded-2xl bg-slate-900/60 border border-slate-700 space-y-2">
-          <div class="w-8 h-8 rounded-lg bg-indigo-500/20 text-indigo-300 flex items-center justify-center font-bold">1</div>
-          <h4 class="font-bold text-sm text-white">Aracıları Ortadan Kaldırmak</h4>
-          <p class="text-xs text-slate-300 leading-relaxed">
-            Mikro ve makro influencer'lar ile KOBİ ve büyük markalar arasındaki gereksiz komisyoncu zincirini kırarak doğrudan teması sağlamak.
-          </p>
-        </div>
-
-        <div class="p-4 rounded-2xl bg-slate-900/60 border border-slate-700 space-y-2">
-          <div class="w-8 h-8 rounded-lg bg-pink-500/20 text-pink-300 flex items-center justify-center font-bold">2</div>
-          <h4 class="font-bold text-sm text-white">Süreçleri Şeffaflaştırmak</h4>
-          <p class="text-xs text-slate-300 leading-relaxed">
-            Başvuru durumunun (Değerlendiriliyor, Kabul, Red) anlık rozetlerle senkronize görünmesi ve belirsiz bekleyişlerin sona ermesi.
-          </p>
-        </div>
-
-        <div class="p-4 rounded-2xl bg-slate-900/60 border border-slate-700 space-y-2">
-          <div class="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-300 flex items-center justify-center font-bold">3</div>
-          <h4 class="font-bold text-sm text-white">Niş & Doğru Eşleşme</h4>
-          <p class="text-xs text-slate-300 leading-relaxed">
-            Tematik ana kategoriler ve doğrudan kişiye özel sarı kartlı hedefleme sayesinde, doğru ürünün doğrudan ilgili yetenekle buluşmasını sağlamak.
-          </p>
-        </div>
-      </div>
-
-      <div class="p-5 rounded-2xl bg-slate-900/40 border border-slate-800 space-y-3">
-        <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400">Stratejik Vizyon</h4>
-        <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
-          Türkiye ve global pazarda içerik üreticiliği ekonomisi (Creator Economy) hızla büyümektedir. InflueMatch, bu ekonomideki parçalanmış ve güven problemi yaşayan ilişkileri tek bir standart altında toplayan <strong>modern, ölçeklenebilir ve güvenli mobil altyapı</strong> olmayı hedefler.
-        </p>
-      </div>
-    </section>
-
-    <!-- SLAYT 4: HANGİ İHTİYACA HİZMET EDİYOR? (PROBLEM - ÇÖZÜM) -->
-    <section class="slide glass-card p-6 sm:p-10 rounded-3xl space-y-6">
-      <div class="border-b border-slate-700/60 pb-4">
-        <span class="text-xs uppercase tracking-wider font-bold text-purple-400">Bölüm 03</span>
-        <h3 class="text-2xl sm:text-3xl font-extrabold text-white">Hangi İhtiyaca Hizmet Ediyor?</h3>
-        <p class="text-xs sm:text-sm text-slate-400">Sektörün kanayan yaraları ve InflueMatch'in getirdiği kesin çözümler</p>
-      </div>
-
-      <div class="space-y-3">
-        <!-- Karşılaştırma 1 -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 p-3.5 rounded-2xl bg-slate-900/50 border border-slate-800">
-          <div class="flex items-start space-x-2.5">
-            <span class="text-red-400 font-bold text-base mt-0.5">✕</span>
-            <div>
-              <p class="text-xs font-bold text-red-300">Geleneksel Problem: DM & E-posta Kaosu</p>
-              <p class="text-xs text-slate-400">Influencer'ların gelen kutuları binlerce spam veya kaybolan e-posta ile doludur; teklifler kaçar.</p>
-            </div>
-          </div>
-          <div class="flex items-start space-x-2.5 sm:border-l sm:border-slate-800 sm:pl-3">
-            <span class="text-emerald-400 font-bold text-base mt-0.5">✓</span>
-            <div>
-              <p class="text-xs font-bold text-emerald-300">InflueMatch Çözümü: Yapılandırılmış İlan Akışı</p>
-              <p class="text-xs text-slate-300">Tüm kampanyalar tek bir akışta listelenir, başvuru ve teklifler derli toplu panelde tutulur.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Karşılaştırma 2 -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 p-3.5 rounded-2xl bg-slate-900/50 border border-slate-800">
-          <div class="flex items-start space-x-2.5">
-            <span class="text-red-400 font-bold text-base mt-0.5">✕</span>
-            <div>
-              <p class="text-xs font-bold text-red-300">Geleneksel Problem: Yüksek Ajans Masrafları</p>
-              <p class="text-xs text-slate-400">Özellikle küçük ve orta ölçekli markalar bütçelerinin %30-50'sini aracı ajans komisyonlarına kaptırır.</p>
-            </div>
-          </div>
-          <div class="flex items-start space-x-2.5 sm:border-l sm:border-slate-800 sm:pl-3">
-            <span class="text-emerald-400 font-bold text-base mt-0.5">✓</span>
-            <div>
-              <p class="text-xs font-bold text-emerald-300">InflueMatch Çözümü: Aracısız Doğrudan İş Birliği</p>
-              <p class="text-xs text-slate-300">Marka ve içerik üretici doğrudan iletişim kurar; bütçe doğrudan projeye ve içeriğe yansır.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Karşılaştırma 3 -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 p-3.5 rounded-2xl bg-slate-900/50 border border-slate-800">
-          <div class="flex items-start space-x-2.5">
-            <span class="text-red-400 font-bold text-base mt-0.5">✕</span>
-            <div>
-              <p class="text-xs font-bold text-red-300">Geleneksel Problem: Güven ve Karar Belirsizliği</p>
-              <p class="text-xs text-slate-400">Başvuru yapan influencer haftalarca cevap alamaz, marka ise adayın yetkinliğini doğrulayamaz.</p>
-            </div>
-          </div>
-          <div class="flex items-start space-x-2.5 sm:border-l sm:border-slate-800 sm:pl-3">
-            <span class="text-emerald-400 font-bold text-base mt-0.5">✓</span>
-            <div>
-              <p class="text-xs font-bold text-emerald-300">InflueMatch Çözümü: Canlı Durum Rozetleri & Profil İnceleme</p>
-              <p class="text-xs text-slate-300">İki taraf da profilleri ve portfolyoyu tıklar, karar durumu eş zamanlı olarak rozetle ekrana yansır.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SLAYT 5: SAĞLADIĞI KOLAYLIKLAR & ÖNE ÇIKAN ÖZELLİKLER -->
-    <section class="slide glass-card p-6 sm:p-10 rounded-3xl space-y-6">
-      <div class="border-b border-slate-700/60 pb-4">
-        <span class="text-xs uppercase tracking-wider font-bold text-purple-400">Bölüm 04</span>
-        <h3 class="text-2xl sm:text-3xl font-extrabold text-white">Sağladığı Kolaylıklar</h3>
-        <p class="text-xs sm:text-sm text-slate-400">Kullanıcı deneyimini benzersiz kılan 6 temel kolaylık</p>
-      </div>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5">
-        <div class="p-3.5 rounded-xl bg-slate-900/60 border border-slate-800 glass-card-hover transition">
-          <div class="text-xl mb-1.5">🎯</div>
-          <h5 class="text-xs font-bold text-white mb-1">Kategori & Özel Hedefli Sarı İlanlar</h5>
-          <p class="text-xs text-slate-400 leading-relaxed">
-            İlgi alanı eşleşmesinin yanı sıra marka belirli bir influencer'a özel ilan açtığında ilan sarı renkte ve sadece o kişiye özel görünür.
-          </p>
-        </div>
-
-        <div class="p-3.5 rounded-xl bg-slate-900/60 border border-slate-800 glass-card-hover transition">
-          <div class="text-xl mb-1.5">📝</div>
-          <h5 class="text-xs font-bold text-white mb-1">Pitch Notlu Başvuru</h5>
-          <p class="text-xs text-slate-400 leading-relaxed">
-            İçerik fikri, portfolyo veya özel not tek bir modal pencereden gönderilir, marka tarafında şık kartta listelenir.
-          </p>
-        </div>
-
-        <div class="p-3.5 rounded-xl bg-slate-900/60 border border-slate-800 glass-card-hover transition">
-          <div class="text-xl mb-1.5">💬</div>
-          <h5 class="text-xs font-bold text-white mb-1">İlana Özel Canlı Sohbet</h5>
-          <p class="text-xs text-slate-400 leading-relaxed">
-            Firestore destekli gerçek zamanlı mesajlaşma; her sohbet hangi ilana ait olduğunu başlıkta gösterir.
-          </p>
-        </div>
-
-        <div class="p-3.5 rounded-xl bg-slate-900/60 border border-slate-800 glass-card-hover transition">
-          <div class="text-xl mb-1.5">👁️</div>
-          <h5 class="text-xs font-bold text-white mb-1">Karşılıklı Profil Görüntüleme</h5>
-          <p class="text-xs text-slate-400 leading-relaxed">
-            Marka başvuran influencer'ın biyografisini ve tercihlerini, influencer ise markanın kurumsal bilgilerini tek tıkla inceler.
-          </p>
-        </div>
-
-        <div class="p-3.5 rounded-xl bg-slate-900/60 border border-slate-800 glass-card-hover transition">
-          <div class="text-xl mb-1.5">📸</div>
-          <h5 class="text-xs font-bold text-white mb-1">Galeriden Fotoğraf & Avatar</h5>
-          <p class="text-xs text-slate-400 leading-relaxed">
-            Base64 & URL akıllı dönüştürücü sayesinde cihaz galerisinden doğrudan profil fotoğrafı yükleme ve anlık senkronizasyon.
-          </p>
-        </div>
-
-        <div class="p-3.5 rounded-xl bg-slate-900/60 border border-slate-800 glass-card-hover transition">
-          <div class="text-xl mb-1.5">🌗</div>
-          <h5 class="text-xs font-bold text-white mb-1">Açık / Koyu Tema Seçeneği</h5>
-          <p class="text-xs text-slate-400 leading-relaxed">
-            Yalnızca Profil ekranında sunulan tek dokunuşluk geçişle ister göz dostu koyu tema, ister ferah açık tema deneyimi.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- SLAYT 6: TEKNOLOJİ STACK'İ VE MİMARİ (BLoC, CUBIT, FIREBASE) -->
-    <section class="slide glass-card p-6 sm:p-10 rounded-3xl space-y-6">
-      <div class="border-b border-slate-700/60 pb-4 flex items-center justify-between">
-        <div>
-          <span class="text-xs uppercase tracking-wider font-bold text-purple-400">Bölüm 05</span>
-          <h3 class="text-2xl sm:text-3xl font-extrabold text-white">Teknoloji Stack'i & Mimari</h3>
-          <p class="text-xs sm:text-sm text-slate-400">Projede kullanılan teknolojiler, paketler ve mimari yapısı</p>
-        </div>
-        <a href="teknoloji_sunumu.html" class="px-3 py-1.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white text-xs font-bold transition shadow-md shadow-purple-600/30">
-          Tüm Detayları Gör →
-        </a>
-      </div>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
-        <!-- BLoC & Cubit -->
-        <div class="p-4 rounded-2xl bg-slate-900/60 border border-purple-500/30 space-y-2">
-          <div class="w-8 h-8 rounded-lg bg-purple-500/20 text-purple-300 flex items-center justify-center font-bold text-sm">🔄</div>
-          <h4 class="font-bold text-sm text-white">BLoC & Cubit</h4>
-          <p class="text-xs text-slate-300 leading-relaxed">
-            <code class="text-purple-300">KimlikBloc</code>, <code class="text-purple-300">IlanBloc</code> ve <code class="text-purple-300">SohbetBloc</code> ile olay-durum reaktivitesi. <code class="text-purple-300">TemaCubit</code> ile tema yönetimi.
-          </p>
-        </div>
-
-        <!-- Firebase Ekosistemi -->
-        <div class="p-4 rounded-2xl bg-slate-900/60 border border-amber-500/30 space-y-2">
-          <div class="w-8 h-8 rounded-lg bg-amber-500/20 text-amber-300 flex items-center justify-center font-bold text-sm">🔥</div>
-          <h4 class="font-bold text-sm text-white">Firebase Bulut Altyapısı</h4>
-          <p class="text-xs text-slate-300 leading-relaxed">
-            <code class="text-amber-300">Firebase Auth</code> ile güvenli oturum, <code class="text-amber-300">Cloud Firestore</code> NoSQL canlı stream ile sohbet ve veri senkronizasyonu.
-          </p>
-        </div>
-
-        <!-- GetIt DI & GoRouter -->
-        <div class="p-4 rounded-2xl bg-slate-900/60 border border-indigo-500/30 space-y-2">
-          <div class="w-8 h-8 rounded-lg bg-indigo-500/20 text-indigo-300 flex items-center justify-center font-bold text-sm">💉</div>
-          <h4 class="font-bold text-sm text-white">GetIt DI & GoRouter</h4>
-          <p class="text-xs text-slate-300 leading-relaxed">
-            <code class="text-indigo-300">get_it</code> Service Locator ile bağımlılık enjeksiyonu; <code class="text-indigo-300">go_router</code> ile bildirimsel ve Guard korumalı yönlendirme.
-          </p>
-        </div>
-
-        <!-- Clean & Feature-First -->
-        <div class="p-4 rounded-2xl bg-slate-900/60 border border-pink-500/30 space-y-2">
-          <div class="w-8 h-8 rounded-lg bg-pink-500/20 text-pink-300 flex items-center justify-center font-bold text-sm">🏗️</div>
-          <h4 class="font-bold text-sm text-white">Clean & Feature-First</h4>
-          <p class="text-xs text-slate-300 leading-relaxed">
-            Modüler klasör yapısı (<code class="text-pink-300">ozellikler/</code>). Model, Repository, BLoC ve Presentation katmanlarının katı ayrımı.
-          </p>
-        </div>
-      </div>
-
-      <div class="p-4 rounded-2xl bg-slate-900/40 border border-slate-800 flex items-center justify-between text-xs">
-        <span class="text-slate-300">Yardımcı Kitaplıklar: <code class="text-purple-300">equatable</code>, <code class="text-purple-300">image_picker</code>, <code class="text-purple-300">uuid</code>, <code class="text-purple-300">intl</code></span>
-        <a href="teknoloji_sunumu.html" class="text-purple-400 hover:text-purple-300 font-bold underline">Teknoloji Sunum Sayfasına Git →</a>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- Alt Bar: Slayt Noktaları ve Klavye Bilgisi -->
-  <footer class="w-full max-w-5xl flex items-center justify-between py-3 px-4 glass-card rounded-2xl mt-4 text-xs text-slate-400">
-    <div class="flex items-center space-x-1.5" id="dotsContainer">
-      <!-- JS ile noktalar doldurulacak -->
-    </div>
-    <div class="hidden sm:flex items-center space-x-2 text-[11px] text-slate-400">
-      <span>Klavye:</span>
-      <kbd class="px-1.5 py-0.5 rounded bg-slate-800 border border-slate-700 text-slate-300 font-mono">←</kbd>
-      <kbd class="px-1.5 py-0.5 rounded bg-slate-800 border border-slate-700 text-slate-300 font-mono">→</kbd>
-      <span>ile geçiş yapabilirsiniz</span>
-    </div>
-  </footer>
-
-  <script>
-    let currentSlide = 0;
-    const slides = document.querySelectorAll('.slide');
-    const totalSlides = slides.length;
-    const indicator = document.getElementById('slideIndicator');
-    const dotsContainer = document.getElementById('dotsContainer');
-
-    function setupDots() {
-      dotsContainer.innerHTML = '';
-      for (let i = 0; i < totalSlides; i++) {
-        const dot = document.createElement('button');
-        dot.className = `w-2.5 h-2.5 rounded-full transition-all duration-300 ${i === currentSlide ? 'bg-purple-500 w-6' : 'bg-slate-700 hover:bg-slate-600'}`;
-        dot.onclick = () => goToSlide(i);
-        dotsContainer.appendChild(dot);
-      }
-    }
-
-    function updateSlides() {
-      slides.forEach((slide, idx) => {
-        if (idx === currentSlide) {
-          slide.classList.add('active');
-        } else {
-          slide.classList.remove('active');
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InflueMatch - Proje Sunumu</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-dark: #0f172a;
+            --bg-card: #1e293b;
+            --accent-primary: #6366f1;
+            --accent-secondary: #a855f7;
+            --accent-gold: #f59e0b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: rgba(255, 255, 255, 0.1);
         }
-      });
-      indicator.textContent = `${currentSlide + 1} / ${totalSlides}`;
-      setupDots();
-    }
 
-    function nextSlide() {
-      if (currentSlide < totalSlides - 1) {
-        currentSlide++;
-      } else {
-        currentSlide = 0;
-      }
-      updateSlides();
-    }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
 
-    function prevSlide() {
-      if (currentSlide > 0) {
-        currentSlide--;
-      } else {
-        currentSlide = totalSlides - 1;
-      }
-      updateSlides();
-    }
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
 
-    function goToSlide(idx) {
-      currentSlide = idx;
-      updateSlides();
-    }
+        /* Top Progress Bar */
+        .progress-bar-container {
+            width: 100%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.05);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 100;
+        }
 
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowRight' || e.key === ' ') {
-        nextSlide();
-      } else if (e.key === 'ArrowLeft') {
-        prevSlide();
-      }
-    });
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary), var(--accent-gold));
+            width: 0%;
+            transition: width 0.3s ease;
+        }
 
-    setupDots();
-  </script>
+        /* Main Presentation Container */
+        .presentation-container {
+            flex: 1;
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide {
+            position: absolute;
+            width: 90%;
+            max-width: 1100px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px) scale(0.98);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            padding: 2.5rem;
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .slide.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+
+        /* Header Elements */
+        .slide-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 1rem;
+        }
+
+        .slide-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.4rem 1rem;
+            background: rgba(99, 102, 241, 0.15);
+            color: var(--accent-primary);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 9999px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .slide-title {
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .slide-content {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: var(--text-muted);
+        }
+
+        /* Grid Layouts */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.25rem;
+        }
+
+        /* Feature Card */
+        .card {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .card:hover {
+            border-color: var(--accent-primary);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 20px -5px rgba(99, 102, 241, 0.15);
+        }
+
+        .card-gold {
+            border-color: rgba(245, 158, 11, 0.4);
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.05) 0%, rgba(15, 23, 42, 0.6) 100%);
+        }
+
+        .card-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 1.2rem;
+        }
+
+        .card-icon.gold {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .card-desc {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* Bullet List */
+        .bullet-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .bullet-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        .bullet-list li i {
+            color: var(--accent-primary);
+            margin-top: 0.25rem;
+        }
+
+        /* Hero Slide Special */
+        .hero-slide {
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem 2rem;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            background: linear-gradient(135deg, #fff 30%, var(--accent-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 650px;
+            margin-bottom: 2rem;
+        }
+
+        .hero-badges {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .badge {
+            padding: 0.5rem 1.25rem;
+            border-radius: 9999px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Code Pill */
+        .code-pill {
+            font-family: monospace;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 0.2rem 0.5rem;
+            border-radius: 6px;
+            color: #38bdf8;
+            font-size: 0.85rem;
+        }
+
+        /* Bottom Controls */
+        .controls {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            padding: 0.75rem 1.5rem;
+            background: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-color);
+            border-radius: 9999px;
+            z-index: 100;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-nav {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: var(--text-main);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-nav:hover {
+            background: var(--accent-primary);
+            transform: scale(1.05);
+        }
+
+        .btn-nav:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .slide-counter {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            min-width: 80px;
+            text-align: center;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .slide {
+                padding: 1.5rem;
+                max-height: 80vh;
+                overflow-y: auto;
+            }
+            .grid-2, .grid-3 {
+                grid-template-columns: 1fr;
+            }
+            .hero-title {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Progress Bar -->
+    <div class="progress-bar-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <!-- Presentation Container -->
+    <div class="presentation-container">
+
+        <!-- SLIDE 1: KAPAK -->
+        <div class="slide hero-slide active">
+            <div class="slide-tag"><i class="fa-solid fa-handshake"></i> InflueMatch Presentation</div>
+            <h1 class="hero-title">InflueMatch</h1>
+            <p class="hero-subtitle">Büyüme Aşamasındaki Influencer'lar ile Bütçe Odaklı Markaları Buluşturan Mobil İş Birliği Platformu</p>
+            <div class="hero-badges">
+                <div class="badge"><i class="fa-brands fa-flutter" style="color: #38bdf8;"></i> Flutter & Dart</div>
+                <div class="badge"><i class="fa-solid fa-cubes" style="color: #a855f7;"></i> BLoC / Cubit Architecture</div>
+                <div class="badge"><i class="fa-solid fa-fire" style="color: #f97316;"></i> Firebase Backend</div>
+                <div class="badge"><i class="fa-solid fa-layer-group" style="color: #10b981;"></i> Feature-First Design</div>
+            </div>
+        </div>
+
+        <!-- SLIDE 2: PROJENİN AMACI VE HİZMET ETTİĞİ HEDEF -->
+        <div class="slide">
+            <div class="slide-header">
+                <div class="slide-tag"><i class="fa-solid fa-bullseye"></i> Problem & Çözüm Vizyonu</div>
+                <span class="slide-title">Projenin Amacı ve Hedefi</span>
+            </div>
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-icon"><i class="fa-solid fa-users-viewfinder"></i></div>
+                    <div class="card-title">Yükselen / Mikro Influencer'lar</div>
+                    <p class="card-desc">Büyüme aşamasındaki yeni içerik üreticileri, henüz dev takipçi sayılarına sahip olmadıkları için büyük ajansların radarına giremiyor. InflueMatch, bu üreticilere ilk ticari iş birliklerini bulma ve portföy oluşturma imkanı sunar.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon" style="background: linear-gradient(135deg, #10b981, #059669);"><i class="fa-solid fa-store"></i></div>
+                    <div class="card-title">Küçük Bütçeli Markalar & KOBİ'ler</div>
+                    <p class="card-desc">Elindeki küçük/spesifik kampanyalar için yüksek ajans bütçeleri ayırmak istemeyen markalar, aradıkları niş üreticiyi doğrudan platform üzerinden hızlıca ve uygun maliyetle bulabilir.</p>
+                </div>
+            </div>
+            <div class="card card-gold">
+                <div class="card-title" style="color: var(--accent-gold); display: flex; align-items: center; gap: 0.5rem;">
+                    <i class="fa-solid fa-handshake-angle"></i> Kazan-Kazan (Win-Win) Ekosistemi
+                </div>
+                <p class="card-desc">InflueMatch, mikro bütçeli işler ile hevesli içerik üreticilerini aracısız buluşturarak hem markanın bütçesini korur hem de influencer'a düzenli gelir ve büyüme fırsatı yaratır.</p>
+            </div>
+        </div>
+
+        <!-- SLIDE 3: MİMARİ VE DİKKAT EDİLEN TEKNOLOJİLER -->
+        <div class="slide">
+            <div class="slide-header">
+                <div class="slide-tag"><i class="fa-solid fa-code"></i> Teknik Altyapı</div>
+                <span class="slide-title">Mimari & Kullanılan Teknolojiler</span>
+            </div>
+            <div class="grid-3">
+                <div class="card">
+                    <div class="card-icon"><i class="fa-solid fa-folder-tree"></i></div>
+                    <div class="card-title">Feature-First Yapı</div>
+                    <ul class="bullet-list">
+                        <li><i class="fa-solid fa-check"></i> <span class="code-pill">lib/core</span> ve <span class="code-pill">lib/features</span> ayırımı</li>
+                        <li><i class="fa-solid fa-check"></i> Modüler, sürdürülebilir ve kolay genişletilebilir mimari</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <div class="card-icon" style="background: linear-gradient(135deg, #ec4899, #8b5cf6);"><i class="fa-solid fa-gears"></i></div>
+                    <div class="card-title">BLoC & State Management</div>
+                    <ul class="bullet-list">
+                        <li><i class="fa-solid fa-check"></i> <span class="code-pill">flutter_bloc</span> ve <span class="code-pill">Cubit</span> entegrasyonu</li>
+                        <li><i class="fa-solid fa-check"></i> Dinamik Tema, Auth, İlan ve Canlı Sohbet Bloc'ları</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <div class="card-icon" style="background: linear-gradient(135deg, #f97316, #eab308);"><i class="fa-solid fa-server"></i></div>
+                    <div class="card-title">Firebase Servisleri</div>
+                    <ul class="bullet-list">
+                        <li><i class="fa-solid fa-check"></i> <b>Firebase Auth:</b> Güvenli giriş ve kayıt</li>
+                        <li><i class="fa-solid fa-check"></i> <b>Cloud Firestore:</b> Gerçek zamanlı ilan & mesaj veri akışı</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card" style="border-left: 4px solid var(--accent-primary);">
+                <div class="card-title">Disiplinli Kod Standartları</div>
+                <p class="card-desc">Temiz kod ilkeleri doğrultusunda hiçbir dosya <b>150 satırı aşmayacak</b> şekilde mikro bileşenlere bölünmüştür. Uygulama başlangıç noktası <span class="code-pill">main.dart</span> ise <b>en fazla 40-50 satır</b> sınırı ile son derece sade tutulmuştur.</p>
+            </div>
+        </div>
+
+        <!-- SLIDE 4: EKRAN TANITIMI 1 - ACILIS VE TANITIM -->
+        <div class="slide">
+            <div class="slide-header">
+                <div class="slide-tag"><i class="fa-solid fa-mobile-screen"></i> Ekran Modülleri 1</div>
+                <span class="slide-title">Açılış & Tanıtım Ekranları</span>
+            </div>
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-icon"><i class="fa-solid fa-rocket"></i></div>
+                    <div class="card-title">Animasyonlu Açılış (Splash Screen)</div>
+                    <p class="card-desc">Uygulama başlatıldığında marka logosu ve animasyonu karşılar. Oturum durumu (Auth State) arka planda kontrol edilerek kullanıcı doğrudan Ana Sayfa veya Tanıtım ekranına yönlendirilir.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fa-solid fa-sliders"></i></div>
+                    <div class="card-title">Onboarding (Tanıtım Sayfası)</div>
+                    <p class="card-desc">Platforma ilk kez katılan kullanıcılara hem Marka hem de Influencer süreçlerini anlatan dinamik kart bileşenleri sunulur. İş birliği mantığı görsellerle vurgulanır.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 5: EKRAN TANITIMI 2 - KIMLIK DOGRULAMA -->
+        <div class="slide">
+            <div class="slide-header">
+                <div class="slide-tag"><i class="fa-solid fa-user-lock"></i> Ekran Modülleri 2</div>
+                <span class="slide-title">Kimlik Doğrulama & Çift Rol Yönetimi</span>
+            </div>
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-icon"><i class="fa-solid fa-right-to-bracket"></i></div>
+                    <div class="card-title">Giriş & Şifre Sıfırlama</div>
+                    <ul class="bullet-list">
+                        <li><i class="fa-solid fa-check"></i> E-posta ve şifre ile güvenli oturum açma</li>
+                        <li><i class="fa-solid fa-check"></i> Hızlı şifre sıfırlama popup diyalogu</li>
+                        <li><i class="fa-solid fa-check"></i> Firebase Auth hata mesajlarını Türkçe açıklamalara dönüştürme</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <div class="card-icon" style="background: linear-gradient(135deg, #06b6d4, #3b82f6);"><i class="fa-solid fa-user-gear"></i></div>
+                    <div class="card-title">Kayıt & Rol Seçim Bileşeni</div>
+                    <ul class="bullet-list">
+                        <li><i class="fa-solid fa-check"></i> <b>Marka / Influencer</b> dinamik rol seçimi</li>
+                        <li><i class="fa-solid fa-check"></i> Seçilen role özel yetki ve kullanıcı modeli oluşturma</li>
+                        <li><i class="fa-solid fa-check"></i> Firestore kullanıcı koleksiyonuna anlık kayıt</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 6: EKRAN TANITIMI 3 - ILANLAR VE BASVURU -->
+        <div class="slide">
+            <div class="slide-header">
+                <div class="slide-tag"><i class="fa-solid fa-bullhorn"></i> Ekran Modülleri 3</div>
+                <span class="slide-title">İlan Akışı, VIP Sarı Kart & Başvuru Yönetimi</span>
+            </div>
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-icon"><i class="fa-solid fa-list-check"></i></div>
+                    <div class="card-title">İlan Akışı & Filtreleme</div>
+                    <p class="card-desc">Markalar yeni kampanya oluşturur; Influencer'lar ilan akışını inceleyebilir. Kategori ve arama çipleri ile filtreleme yapılır. Influencer'lar ilanlara özel <b>pitch notu</b> ile başvurabilir.</p>
+                </div>
+                <div class="card card-gold">
+                    <div class="card-icon gold"><i class="fa-solid fa-star"></i></div>
+                    <div class="card-title" style="color: var(--accent-gold);">⭐ VIP Sarı İlan (Hedefe Özel)</div>
+                    <p class="card-desc">Marka ilan açarken belirli bir influencer belirtebilir (<span class="code-pill">hedefInfluencer</span>). Bu ilan akışta altın sarısı renkte ve VIP rozetiyle yalnızca ilgili içerik üreticisine görünür.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-title"><i class="fa-solid fa-arrows-rotate" style="color: var(--accent-primary);"></i> Anlık Başvuru Durumu Senkronizasyonu</div>
+                <p class="card-desc">Marka gelen başvuruları inceler, Kabul/Ret kararı verir. Karar Firestore'a yazıldığı anda Influencer ekranındaki rozet (<i>Değerlendiriliyor, Kabul Edildi, Reddedildi</i>) canlı olarak güncellenir.</p>
+            </div>
+        </div>
+
+        <!-- SLIDE 7: EKRAN TANITIMI 4 - SOHBET MIZAMU -->
+        <div class="slide">
+            <div class="slide-header">
+                <div class="slide-tag"><i class="fa-solid fa-comments"></i> Ekran Modülleri 4</div>
+                <span class="slide-title">Gerçek Zamanlı Sohbet (Chat)</span>
+            </div>
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-icon" style="background: linear-gradient(135deg, #10b981, #14b8a6);"><i class="fa-solid fa-message"></i></div>
+                    <div class="card-title">Sohbet Odası Listesi</div>
+                    <p class="card-desc">Kullanıcının aktif olduğu tüm mesajlaşma odaları listelenir. İlan başlığı, karşı tarafın adı/profili ve en son gönderilen mesaj özet bilgisi anlık dinlenir.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon" style="background: linear-gradient(135deg, #6366f1, #8b5cf6);"><i class="fa-solid fa-paper-plane"></i></div>
+                    <div class="card-title">Canlı Mesajlaşma Ekranı</div>
+                    <p class="card-desc">Firestore Stream mimarisi ile mesajlar milisaniyeler içinde iletilir. Gönderen ve alıcı balonları kişiselleştirilmiş renklerle biçimlendirilir.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 8: EKRAN TANITIMI 5 - PROFIL VE TEMA -->
+        <div class="slide">
+            <div class="slide-header">
+                <div class="slide-tag"><i class="fa-solid fa-user-gear"></i> Ekran Modülleri 5</div>
+                <span class="slide-title">Karşılıklı Profil İnceleme & Dinamik Tema</span>
+            </div>
+            <div class="grid-3">
+                <div class="card">
+                    <div class="card-icon"><i class="fa-solid fa-id-card"></i></div>
+                    <div class="card-title">Karşılıklı Profil İnceleme</div>
+                    <p class="card-desc">Markalar başvuran üreticinin biyografi ve tercihlerini; Influencer'lar ise ilan sahibi markanın kurumsal detaylarını karşılıklı olarak inceleyebilir.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon" style="background: linear-gradient(135deg, #ec4899, #f43f5e);"><i class="fa-solid fa-tags"></i></div>
+                    <div class="card-title">İlgi Alanları (Max 5)</div>
+                    <p class="card-desc">Influencer'lar uzmanlık alanlarını (Moda, Teknoloji, Oyun, Oyun vb.) en fazla 5 kategori seçerek profillerinde sergileyebilir.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon" style="background: linear-gradient(135deg, #eab308, #3b82f6);"><i class="fa-solid fa-moon"></i></div>
+                    <div class="card-title">Koyu / Açık Tema Seçimi</div>
+                    <p class="card-desc">Yalnızca profil sayfasından kontrol edilen <span class="code-pill">TemaCubit</span> ile tüm uygulama anında Açık ve Koyu Material 3 temasına adapte olur.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 9: KAPANIŞ VE ÖZET -->
+        <div class="slide hero-slide">
+            <div class="slide-tag"><i class="fa-solid fa-flag-checkered"></i> Özet</div>
+            <h1 class="hero-title">Teşekkür Ederiz</h1>
+            <p class="hero-subtitle">InflueMatch, modern Flutter mimarisi ve mikro bütçeli iş birliği modeliyle dijital pazarlamada yeni bir dönem başlatıyor.</p>
+            <div class="hero-badges">
+                <div class="badge"><i class="fa-solid fa-check"></i> Esnek & Hızlı</div>
+                <div class="badge"><i class="fa-solid fa-shield-halved"></i> Güvenli Altyapı</div>
+                <div class="badge"><i class="fa-solid fa-chart-line"></i> Büyüme Odaklı</div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Navigation Controls -->
+    <div class="controls">
+        <button class="btn-nav" id="prevBtn" onclick="changeSlide(-1)"><i class="fa-solid fa-chevron-left"></i></button>
+        <div class="slide-counter" id="slideCounter">1 / 9</div>
+        <button class="btn-nav" id="nextBtn" onclick="changeSlide(1)"><i class="fa-solid fa-chevron-right"></i></button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        const progressBar = document.getElementById('progressBar');
+        const slideCounter = document.getElementById('slideCounter');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+
+        function updateSlide() {
+            slides.forEach((slide, index) => {
+                if (index === currentSlide) {
+                    slide.classList.add('active');
+                } else {
+                    slide.classList.remove('active');
+                }
+            });
+
+            // Update Progress Bar
+            const progress = ((currentSlide + 1) / totalSlides) * 100;
+            progressBar.style.width = progress + '%';
+
+            // Update Counter Text
+            slideCounter.textContent = `${currentSlide + 1} / ${totalSlides}`;
+
+            // Update Buttons Disabled State
+            prevBtn.disabled = currentSlide === 0;
+            nextBtn.disabled = currentSlide === totalSlides - 1;
+        }
+
+        function changeSlide(direction) {
+            currentSlide += direction;
+            if (currentSlide < 0) currentSlide = 0;
+            if (currentSlide >= totalSlides) currentSlide = totalSlides - 1;
+            updateSlide();
+        }
+
+        // Keyboard Navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === 'Space') {
+                changeSlide(1);
+            } else if (e.key === 'ArrowLeft') {
+                changeSlide(-1);
+            }
+        });
+
+        // Initialize First Slide
+        updateSlide();
+    </script>
 </body>
 </html>
